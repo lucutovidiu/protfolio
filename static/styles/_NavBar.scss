@@ -1,0 +1,86 @@
+$break-large: "728px";
+$navbar_color: rgba(19, 19, 17, 0.9);
+
+//------------navbar wrapper------------
+.navBar_wrapper {
+  @media screen and (min-width: $break-large) {
+    background-color: $navbar_color;
+  }
+
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  height: 60px;
+
+  width: 100vw;
+  font-family: "Mina";
+}
+//------------navbar wrapper------------
+//------------navbar mobile menu--------
+.navBar_mobile_menu {
+  margin: 0;
+  padding: 0;
+  //mobile menu btn
+  color: rgb(158, 155, 155);
+  #navBar_mobile_menu-btn {
+    padding: 2rem;
+    font-size: 1.5rem;
+    transition: opacity 2s;
+    cursor: pointer;
+  }
+
+  .navBar_mobile_hidden_menu {
+    font-size: 1.3rem;
+    height: 100vh;
+    width: 13rem;
+    list-style: none;
+    text-decoration: none;
+    margin: 0;
+    padding: 5%;
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    transition: opacity 2s;
+    background: $navbar_color;
+    & a {
+      text-decoration: none;
+      // color: red;
+    }
+    & li {
+      padding-top: 20px;
+    }
+  }
+  @media screen and (max-width: $break-large) {
+    display: block;
+  }
+  @media screen and (min-width: $break-large) {
+    display: none;
+  }
+}
+//------------navbar mobile menu--------
+//------------navbar desktop menu-------
+.navBar_desktop_menu {
+  @media screen and (max-width: $break-large) {
+    display: none;
+  }
+  @media screen and (min-width: $break-large) {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    font-size: 1.4rem;
+    float: right;
+    line-height: 60px;
+    & li {
+      float: left;
+      text-decoration: none;
+      padding-right: 25px;
+      & a {
+        text-decoration: none;
+        // color: red;
+        // color: inherit;
+      }
+    }
+  }
+}
+//------------navbar desktop menu-------

@@ -1,0 +1,36 @@
+.footer_wrapper {
+  position: relative;
+  background-color: rgba(24, 22, 22, 0.925);
+  padding: 2rem 0;
+  //   height: 40vh;
+  & .footer_what_i_do {
+    .footer_card {
+      float: left;
+      margin: 0;
+      padding: 0.5rem;
+      .title {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+      .footer_card_badge {
+        margin-left: -0.6rem;
+        margin-top: -0.6rem;
+      }
+    }
+    i {
+      padding: 1rem;
+      font-size: 2rem;
+    }
+    color: #3498db;
+  }
+}
+
+.clear-fix {
+  display: table;
+  clear: both;
+}
+h4,
+h6 {
+  color: #b5b9b9;
+}

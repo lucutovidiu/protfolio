@@ -1,0 +1,33 @@
+@import "landingPage";
+@import "_helperClases";
+@import "LandingPageInfo";
+@import "NavBar";
+@import "Footer";
+@import "portfolios";
+body,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+@font-face {
+  font-family: "Lato Black";
+  src: url(../../static/fonts/Lato-Black.ttf);
+}
+@font-face {
+  font-family: "Mina";
+  src: url("../../static/fonts/Mina-Bold.ttf");
+}
+@font-face {
+  font-family: "Hand Writing";
+  src: url("../../static/fonts/JustAnotherHand-Regular.ttf");
+}
+
+body::-webkit-scrollbar {
+  width: 15px;
+  background-color: #cec5c5;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: #5f5d5d;
+}
