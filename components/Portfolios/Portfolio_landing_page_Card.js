@@ -1,8 +1,12 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
+import { Button } from "react-bootstrap";
 import Link from "next/link";
 
-const Portfolio_landing_page_Card = () => {
+const Portfolio_landing_page_Card = ({
+  title,
+  shortDescription,
+  technologiesUsed
+}) => {
   return (
     <div className="portfolio_landing_page_wrapper mt-4">
       <div className="portfolio_landing_page_card">
@@ -12,26 +16,17 @@ const Portfolio_landing_page_Card = () => {
         />
         <div className="portfolio_landing_page_card_details">
           <div className="portfolio_landing_page_card_details_title">
-            <h5>Stationary Orders - WebApp</h5>
+            <h5>{title}</h5>
           </div>
           <div className="portfolio_landing_page_card_details_minidescription">
             <ul>
-              <li>
-                The App Takes stationary Orders from the company's Superstores
-                and centralize them to main office where orderes can be
-                processed and more ...
-              </li>
-              <li>
-                Technologies used: Node / Express, JavaScript / React, CSS /
-                Bootstrap, GraphQL / MYSQL
-              </li>
+              <li>{shortDescription}</li>
+              <li>{technologiesUsed}</li>
             </ul>
           </div>
           <div className="portfolio_landing_page_card_details_moreinfobtn">
             <Link href="/">
-              <Button variant="contained" color="primary">
-                More Info
-              </Button>
+              <Button variant="secondary">More Info</Button>
             </Link>
           </div>
         </div>

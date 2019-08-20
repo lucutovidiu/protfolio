@@ -10,6 +10,7 @@
 }
 // -------------- main wrapper -------------
 .portfolios_main_wrapper {
+  position: relative;
   background-image: url(../img/portfolios_main3.jpg);
   background-position: top;
   background-repeat: no-repeat;
@@ -17,7 +18,9 @@
   // background-color: #e9ecef;
   // background-color: #5a5a5a;
   //   margin-top: 70px;
+
   min-height: 100vh;
+  height: fit-content;
   & .portfolios_title {
     margin: 0;
     padding: 80px 0 0 0;
@@ -34,7 +37,7 @@
   box-shadow: -1px 0px 9px 0 black;
   border-radius: 5px;
   width: 320px;
-  height: 500px;
+  height: 520px;
   position: relative;
   & .portfolio_landing_page_card {
     color: white;
@@ -49,7 +52,7 @@
       // background-color: aliceblue;
       background-color: #5a5a5a;
       color: black;
-      height: 300px;
+      height: 320px;
       &_title {
         text-align: center;
         padding: 1rem 0 0.6rem 0;
@@ -68,7 +71,7 @@
         text-align: justify;
       }
       &_moreinfobtn {
-        padding-top: 1.5rem;
+        padding-top: 0.9rem;
         text-align: center;
       }
     }

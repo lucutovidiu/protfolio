@@ -5,7 +5,7 @@ const About = () => {
   return (
     <div className="portfolios_main_wrapper">
       <div className="container-fluid p-0 m-0">
-        <div className="jumbotron">About</div>
+        <div className="jumbotron">About - Work In progress</div>
       </div>
     </div>
   );

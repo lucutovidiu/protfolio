@@ -44,8 +44,8 @@ const LandingPageInfo = props => {
               </span>
             </p>
             <div className="text-left pt-0 mt-0">
-              <Link href="/contact">
-                <a className="about">
+              <Link href="/about">
+                <a className="badge">
                   Please check out a full deschiption on the About Page
                 </a>
               </Link>

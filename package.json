@@ -4,28 +4,39 @@
   "description": "This is my portfolio website",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --watch server.js ./server/server.js",
-    "build": "next build"
+    "dev": "nodemon --watch server ./server/server.js",
+    "build": "next build",
+    "start": "next start"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@material-ui/core": "^4.3.2",
-    "@material-ui/icons": "^4.2.1",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
+    "bootstrap": "^4.3.1",
     "file-loader": "^4.2.0",
+    "graphql-request": "^1.8.2",
+    "isomorphic-unfetch": "^3.0.0",
+    "mongoose": "^5.6.9",
     "next": "^9.0.3",
     "next-fonts": "^0.17.0",
     "next-images": "^1.1.2",
     "node-sass": "^4.12.0",
     "react": "^16.9.0",
+    "react-bootstrap": "^1.0.0-beta.11",
     "react-dom": "^16.9.0",
     "react-scroll": "^1.7.13",
-    "url-loader": "^2.1.0"
+    "url-loader": "^2.1.0",
+    "validator": "^11.1.0"
   },
   "devDependencies": {
-    "express": "^4.17.1"
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-graphql": "^0.9.0",
+    "graphql": "^14.4.2",
+    "nodemailer": "^6.3.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3"
   }
 }
