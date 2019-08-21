@@ -85,74 +85,76 @@ const Contact = () => {
   }
 
   return (
-    <div className="portfolios_main_wrapper">
-      <div className="container contact_form_main">
-        <br />
-        <br />
-        <br />
-        <div className="contact_form_wrapper">
+    <BaseLayout tab="Contact">
+      <div className="portfolios_main_wrapper">
+        <div className="container contact_form_main">
           <br />
-          <Row>
-            <div
-              className={
-                err.length > 0
-                  ? "alert alert-danger contact_form_err_msg"
-                  : "alert alert-danger contact_form_err_msg hidden"
-              }
-              role="alert"
-            >
-              {err[0]}
-            </div>
-          </Row>
-          <h1 className="contact_form_title p-2">
-            Contact <span style={{ color: "#01c851" }}>Me</span>
-          </h1>
-          <Col sm={{ span: 8, offset: 2 }} className="pt-4">
-            <form onSubmit={onSubmit}>
-              <div className="group">
-                <input type="text" required ref={name} />
-                {/* <span class="highlight" /> */}
-                <span className="bar" />
-                <label>Name</label>
+          <br />
+          <br />
+          <div className="contact_form_wrapper">
+            <br />
+            <Row>
+              <div
+                className={
+                  err.length > 0
+                    ? "alert alert-danger contact_form_err_msg"
+                    : "alert alert-danger contact_form_err_msg hidden"
+                }
+                role="alert"
+              >
+                {err[0]}
               </div>
+            </Row>
+            <h1 className="contact_form_title p-2">
+              Contact <span style={{ color: "#01c851" }}>Me</span>
+            </h1>
+            <Col sm={{ span: 8, offset: 2 }} className="pt-4">
+              <form onSubmit={onSubmit}>
+                <div className="group">
+                  <input type="text" required ref={name} />
+                  {/* <span class="highlight" /> */}
+                  <span className="bar" />
+                  <label>Name</label>
+                </div>
 
-              <div className="group">
-                <input type="text" required ref={email} />
-                {/* <span class="highlight" /> */}
-                <span className="bar" />
-                <label>Email</label>
-              </div>
+                <div className="group">
+                  <input type="text" required ref={email} />
+                  {/* <span class="highlight" /> */}
+                  <span className="bar" />
+                  <label>Email</label>
+                </div>
 
-              <textarea
-                className="input_text_area col"
-                rows="4"
-                placeholder="Message"
-                required
-                ref={msg}
-              />
-              <br />
-              <br />
-              <Row>
-                <Col md={{ span: 6, offset: 2 }}>
-                  {!isSendingEmail.isSending ? (
-                    <button className="btn btn-success" type="submit">
-                      {isSendingEmail.msg}
-                    </button>
-                  ) : (
-                    <Spinner animation="border" role="status">
-                      <span className="sr-only">Loading...</span>
-                    </Spinner>
-                  )}
-                </Col>
-              </Row>
-            </form>
-          </Col>
-          <br />
-          <br />
+                <textarea
+                  className="input_text_area col"
+                  rows="4"
+                  placeholder="Message"
+                  required
+                  ref={msg}
+                />
+                <br />
+                <br />
+                <Row>
+                  <Col md={{ span: 12, offset: 2 }}>
+                    {!isSendingEmail.isSending ? (
+                      <button className="btn btn-success" type="submit">
+                        {isSendingEmail.msg}
+                      </button>
+                    ) : (
+                      <Spinner animation="border" role="status">
+                        <span className="sr-only">Loading...</span>
+                      </Spinner>
+                    )}
+                  </Col>
+                </Row>
+              </form>
+            </Col>
+            <br />
+            <br />
+          </div>
         </div>
       </div>
-    </div>
+    </BaseLayout>
   );
 };
 
-export default BaseLayout(Contact, "Contact");
+export default Contact;

@@ -1,0 +1,22 @@
+.login_wrapper {
+  background-color: rgba(92, 87, 87, 0.788);
+  min-width: 100px;
+  max-width: 300px;
+  margin: 0 auto;
+  position: absolute;
+  padding: 1.5rem 2rem;
+  left: 50%;
+  top: 55%;
+  border-radius: 9px;
+  transform: translate(-50%, -50%);
+  & .signup_btn {
+    margin-bottom: 0.6rem;
+  }
+  @media all and (min-height: 800px) {
+    top: 40%;
+    padding: 2rem;
+    .signup_btn {
+      margin-bottom: 1rem;
+    }
+  }
+}

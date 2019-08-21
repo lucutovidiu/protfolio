@@ -8,7 +8,7 @@ function Home(props) {
   // const [getStarted, setGetStarted] = useState(false);
 
   return (
-    <>
+    <BaseLayout tab="Home">
       <div className="langing_page_wrapper">
         <div className="langing_page_content_wrapper centerText container-fluid">
           <h1 className="langing_page_h1">Welcome To My Portfolio Website</h1>
@@ -32,11 +32,11 @@ function Home(props) {
       <LandingPageInfo />
       <div id="section1" className="clear-fix" />
       <Footer />
-    </>
+    </BaseLayout>
   );
 }
 
-export default BaseLayout(Home, "Home");
+export default Home;
 // function Copyright() {
 //   return (
 //     <Typography variant="body2" color="textSecondary" align="center">

@@ -11,12 +11,22 @@
 // -------------- main wrapper -------------
 .portfolios_main_wrapper {
   position: relative;
-  background-image: url(../img/portfolios_main3.jpg);
+  // background-color: #e9ecef;
+  // background-color: #181717;
+  // ------------------- gradient -----------------------
+  background-color: #485461;
+  background: radial-gradient(
+      circle closest-corner at center,
+      rgba(34, 34, 34, 0.918),
+      black 70%
+    )
+    no-repeat;
+  // ------------------- gradient -----------------------
+
+  // background-image: url(../img/portfolios_main3.jpg);
   background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
-  // background-color: #e9ecef;
-  // background-color: #5a5a5a;
   //   margin-top: 70px;
 
   min-height: 100vh;

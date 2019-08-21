@@ -7,6 +7,7 @@ const cors = require("cors");
 const graphqlHTTP = require("express-graphql");
 const schema = require("./GraphQL/Schema");
 const rootValue = require("./GraphQL/Resolvers");
+const { GraphQLAuthRoute } = require("./GraphQL/auth/authMiddlewere");
 
 const dev = process.env.NODE_ENV !== "production";
 const SERVER_PORT = process.env.SERVER_PORT || 3000;
@@ -26,6 +27,7 @@ nextApp
 
         expressApp.use(
           "/api/graphql",
+          GraphQLAuthRoute,
           graphqlHTTP({
             ...schema,
             ...rootValue,
