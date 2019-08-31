@@ -1,10 +1,12 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext } from "react";
 import { Col } from "react-bootstrap";
 import { fetchGraphQL } from "../HelperFunctions";
 import CustomModel from "../HelperComponents/CustomModel";
 import validator from "validator";
+import { useDispatch } from "react-redux";
 
 const LoginComponent = props => {
+  const dispatch = useDispatch();
   const userEmail = useRef("");
   const password = useRef("");
   const [modal, setModel] = useState({
@@ -12,6 +14,7 @@ const LoginComponent = props => {
     msgHeader: "",
     msgBody: []
   });
+
   const handleClose = () =>
     setModel({
       showModal: false,
@@ -28,18 +31,24 @@ const LoginComponent = props => {
   function fetchUser() {
     const query = `
     {
-      TryLogin(userEmail:"${userEmail.current.value}",password: "${
-      password.current.value
-    }")
+      TryLogin(userEmail:"${userEmail.current.value}",password: "${password.current.value}")
       }
     `;
     fetchGraphQL(query)
       .then(data => {
         try {
-          let { msg, jwtToken } = JSON.parse(data.TryLogin);
+          let { msg, jwtToken, role } = JSON.parse(data.TryLogin);
           if (msg === "ok") {
-            window.sessionStorage.setItem("jwt", jwtToken);
-            handleShow("Success", ["you're logged in"]);
+            dispatch({
+              type: "AUTH_USER",
+              payload: {
+                loggedInUser: userEmail.current.value,
+                jwt: jwtToken,
+                role
+              }
+            });
+            window.location = "/";
+            // handleShow("Success", ["you're logged in"]);
           } else {
             handleShow("Error", ["Username or password incorect!!"]);
           }

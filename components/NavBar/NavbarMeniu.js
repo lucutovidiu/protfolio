@@ -1,43 +1,89 @@
 import React from "react";
 import Link from "next/link";
-export default function NavbarMeniu(props) {
-  const btnRouteColor = routeName =>
-    props.tab === routeName || typeof props.tab === "undefined"
+import { connect } from "react-redux";
+
+class NavbarMeniu extends React.Component {
+  constructor(props) {
+    super(props);
+    this.LogOut = this.LogOut.bind(this);
+  }
+  shouldComponentUpdate(nextProps) {
+    if (this.props.isAuthenticaticated === nextProps.isAuthenticaticated)
+      return false;
+    else return true;
+  }
+
+  LogOut() {
+    this.props.logout();
+  }
+
+  // const isAuthenticaticated = useSelector(state => state.isAuthenticaticated);
+  // console.log(isAuthenticaticated);
+
+  btnRouteColor(routeName) {
+    return this.props.tab === routeName || typeof this.props.tab === "undefined"
       ? { color: "#3498db" }
       : { color: "rgb(158, 155, 155)" };
+  }
   // console.log(homeColorBtn);
-  return (
-    <>
-      <li>
-        <Link href="/">
-          <a style={btnRouteColor("Home")}>Home</a>
-        </Link>
-      </li>
-      <li>
-        <Link href="/portfolios">
-          <a style={btnRouteColor("Protfolios")}>Protfolios</a>
-        </Link>
-      </li>
-      <li>
-        <Link href="/blog">
-          <a style={btnRouteColor("Blog")}>Blog</a>
-        </Link>
-      </li>
-      <li>
-        <Link href="/contact">
-          <a style={btnRouteColor("Contact")}>Contact</a>
-        </Link>
-      </li>
-      <li>
-        <Link href="/about">
-          <a style={btnRouteColor("About")}>About</a>
-        </Link>
-      </li>
-      <li>
-        <Link href="/login">
-          <a style={btnRouteColor("Login")}>Login</a>
-        </Link>
-      </li>
-    </>
-  );
+  render() {
+    return (
+      <>
+        <li>
+          <Link href="/">
+            <a style={this.btnRouteColor("Home")}>Home</a>
+          </Link>
+        </li>
+        <li>
+          <a href="/portfolios">
+            <span style={this.btnRouteColor("Protfolios")}>Portfolios</span>
+          </a>
+        </li>
+        <li>
+          {this.props.isAuthenticaticated ? (
+            <Link href="/portfolios/addNew">
+              <a style={this.btnRouteColor("Add New Portfolio")}>
+                Add New Portfolio
+              </a>
+            </Link>
+          ) : (
+            ""
+          )}
+        </li>
+        <li>
+          <Link href="/contact" as="/contact">
+            <a style={this.btnRouteColor("Contact")}>Contact</a>
+          </Link>
+        </li>
+        <li>
+          <Link href="/about">
+            <a style={this.btnRouteColor("About")}>About</a>
+          </Link>
+        </li>
+        <li>
+          {this.props.isAuthenticaticated ? (
+            <button className="a-button btn" onClick={this.LogOut}>
+              Logout
+            </button>
+          ) : (
+            <Link href="/login">
+              <a style={this.btnRouteColor("Login")}>Login</a>
+            </Link>
+          )}
+        </li>
+      </>
+    );
+  }
 }
+function mapStateToProps(state) {
+  return { isAuthenticaticated: state.isAuthenticaticated };
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    logout: () => dispatch({ type: "LOGOUT" })
+  };
+}
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NavbarMeniu);

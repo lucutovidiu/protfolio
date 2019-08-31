@@ -1,0 +1,250 @@
+{
+  "mini-css-extract-plugin node_modules/css-loader/index.js??ref--8-1!node_modules/sass-loader/lib/loader.js??ref--8-2!static/styles/_mainStyle.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/css-loader/index.js??ref--8-1!node_modules/sass-loader/lib/loader.js??ref--8-2!static/styles/_helperClases.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/css-loader/index.js??ref--8-1!node_modules/sass-loader/lib/loader.js??ref--8-2!static/styles/_materialDesignInput.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/css-loader/index.js??ref--8-1!node_modules/sass-loader/lib/loader.js??ref--8-2!static/styles/_contactForm.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/css-loader/index.js??ref--8-1!node_modules/sass-loader/lib/loader.js??ref--8-2!static/styles/_login.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/css-loader/index.js??ref--8-1!node_modules/sass-loader/lib/loader.js??ref--8-2!static/styles/_portfolios.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/css-loader/index.js??ref--8-1!node_modules/sass-loader/lib/loader.js??ref--8-2!static/styles/_index.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/css-loader/index.js??ref--8-1!node_modules/sass-loader/lib/loader.js??ref--8-2!static/styles/_Portfolio_id.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/css-loader/index.js??ref--7-1!node_modules/bootstrap/dist/css/bootstrap.min.css": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/css-loader/index.js??ref--8-1!node_modules/sass-loader/lib/loader.js??ref--8-2!static/styles/_Footer.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/css-loader/index.js??ref--8-1!node_modules/sass-loader/lib/loader.js??ref--8-2!static/styles/_NavBar.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "modules": {
+    "byIdentifier": {
+      "css node_modules/css-loader/index.js??ref--8-1!node_modules/sass-loader/lib/loader.js??ref--8-2!static/styles/_mainStyle.scss 0": 0,
+      "css node_modules/css-loader/index.js??ref--8-1!node_modules/sass-loader/lib/loader.js??ref--8-2!static/styles/_helperClases.scss 0": 1,
+      "css node_modules/css-loader/index.js??ref--8-1!node_modules/sass-loader/lib/loader.js??ref--8-2!static/styles/_materialDesignInput.scss 0": 2,
+      "css node_modules/css-loader/index.js??ref--7-1!node_modules/bootstrap/dist/css/bootstrap.min.css 0": 3,
+      "css node_modules/css-loader/index.js??ref--8-1!node_modules/sass-loader/lib/loader.js??ref--8-2!static/styles/_NavBar.scss 0": 4,
+      "css node_modules/css-loader/index.js??ref--8-1!node_modules/sass-loader/lib/loader.js??ref--8-2!static/styles/_contactForm.scss 0": 5,
+      "css node_modules/css-loader/index.js??ref--8-1!node_modules/sass-loader/lib/loader.js??ref--8-2!static/styles/_Footer.scss 0": 6,
+      "css node_modules/css-loader/index.js??ref--8-1!node_modules/sass-loader/lib/loader.js??ref--8-2!static/styles/_index.scss 0": 7,
+      "css node_modules/css-loader/index.js??ref--8-1!node_modules/sass-loader/lib/loader.js??ref--8-2!static/styles/_login.scss 0": 8,
+      "css node_modules/css-loader/index.js??ref--8-1!node_modules/sass-loader/lib/loader.js??ref--8-2!static/styles/_Portfolio_id.scss 0": 9,
+      "css node_modules/css-loader/index.js??ref--8-1!node_modules/sass-loader/lib/loader.js??ref--8-2!static/styles/_portfolios.scss 0": 10
+    },
+    "usedIds": {
+      "0": 0,
+      "1": 1,
+      "2": 2,
+      "3": 3,
+      "4": 4,
+      "5": 5,
+      "6": 6,
+      "7": 7,
+      "8": 8,
+      "9": 9,
+      "10": 10
+    }
+  },
+  "chunks": {
+    "byName": {
+      "commons": 0,
+      "static/runtime/webpack.js": 1,
+      "styles": 2,
+      "static/runtime/main.js": 3,
+      "static\\mghgisnyF2TAq0QVX5aMS\\pages\\_app.js": 4,
+      "static\\mghgisnyF2TAq0QVX5aMS\\pages\\_error.js": 5,
+      "static\\mghgisnyF2TAq0QVX5aMS\\pages\\about.js": 6,
+      "static\\mghgisnyF2TAq0QVX5aMS\\pages\\blog.js": 7,
+      "static\\mghgisnyF2TAq0QVX5aMS\\pages\\contact.js": 8,
+      "static\\mghgisnyF2TAq0QVX5aMS\\pages\\index.js": 9,
+      "static\\mghgisnyF2TAq0QVX5aMS\\pages\\login.js": 10,
+      "static\\mghgisnyF2TAq0QVX5aMS\\pages\\portfolio\\[id].js": 11,
+      "static\\mghgisnyF2TAq0QVX5aMS\\pages\\portfolios.js": 12
+    },
+    "bySource": {},
+    "usedIds": [
+      0,
+      1,
+      10,
+      11,
+      12,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ]
+  }
+}

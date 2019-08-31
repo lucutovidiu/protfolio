@@ -3,10 +3,10 @@ import Link from "next/link";
 
 const LandingPageInfo = props => {
   return (
-    <div className="lp_info_wrapper jumbotron">
+    <div className="lp_info_wrapper pt-4">
       <div className="container">
-        <h4 className="lp_info_wrapper_intro">A little intro</h4>
-        <div className="row pt-3 centerText">
+        <h4 className="lp_info_wrapper_intro">A little intro about myself</h4>
+        <div className="row pt-4 centerText">
           <div className="col-md-6">
             <h4>My Passion</h4>
             <p className="lead text-left text-justify pt-2">
@@ -39,11 +39,12 @@ const LandingPageInfo = props => {
               about 2 years I've started hard on web programming in which I see
               big potential. So at the moment I put more efort into developing
               skills like:{" "}
-              <span className="font-weight-bold">
-                HTML, CSS, JAVASCRIPT/REACT, NODE/EXPRESS, MySql, MongoDB.
+              <span className="font-weight-bold small">
+                HTML, CSS, JAVASCRIPT/REACT, NODE/EXPRESS, MySql,
+                MongoDB/GraphQL.
               </span>
             </p>
-            <div className="text-left pt-0 mt-0">
+            <div className="text-left pt-0 mt-0 ">
               <Link href="/about">
                 <a className="badge">
                   Please check out a full deschiption on the About Page

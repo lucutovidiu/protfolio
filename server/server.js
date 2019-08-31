@@ -13,7 +13,6 @@ const dev = process.env.NODE_ENV !== "production";
 const SERVER_PORT = process.env.SERVER_PORT || 3000;
 const nextApp = next({ dev });
 const nextRoutesHandler = nextApp.getRequestHandler();
-const expressApp = express();
 
 nextApp
   .prepare()
@@ -21,9 +20,12 @@ nextApp
     mongoose
       .connect()
       .then(() => {
+        const expressApp = express();
         expressApp.use(bodyParser.urlencoded({ extended: false }));
         expressApp.use(bodyParser.json());
         expressApp.use(cors());
+
+        expressApp.use(express.static("../static"));
 
         expressApp.use(
           "/api/graphql",
@@ -47,7 +49,7 @@ nextApp
         });
       })
       .catch(err => {
-        console.error("mongo db connection failed");
+        console.error(err);
       });
   })
   .catch(err => {

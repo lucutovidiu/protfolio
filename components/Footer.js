@@ -1,4 +1,5 @@
 import React from "react";
+import "../static/styles/_Footer.scss";
 
 const Footer = () => {
   function FooterCard(
@@ -42,6 +43,7 @@ const Footer = () => {
               {FooterCard("CSS3", "fab fa-css3-alt")}
               {FooterCard("BootStrap", "fab fa-bootstrap")}
               {FooterCard("React", "fab fa-react")}
+              {FooterCard("Nodejs", "fab fa-node-js")}
             </div>
           </div>
           <div className="col-md-4">

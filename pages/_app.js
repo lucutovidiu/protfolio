@@ -1,20 +1,20 @@
 import React from "react";
 import App, { Container } from "next/app";
-// import Head from "next/head";
 import "../static/styles/_mainStyle.scss";
-// import "bootstrap/dist/css/bootstrap.min.css";
-// import { ThemeProvider } from "@material-ui/styles";
-// import CssBaseline from "@material-ui/core/CssBaseline";
-// import theme from "../components/material_ui/theme";
+import "../static/styles/_helperClases.scss";
+import "../static/styles/_materialDesignInput.scss";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Provider } from "react-redux";
+import withReduxStore from "../components/React-Redux/with-redux-store";
 
 class MyApp extends App {
-  componentDidMount() {
-    // Remove the server-side injected CSS.
-    const jssStyles = document.querySelector("#jss-server-side");
-    if (jssStyles) {
-      jssStyles.parentNode.removeChild(jssStyles);
-    }
-  }
+  // componentDidMount() {
+  //   // Remove the server-side injected CSS.
+  //   const jssStyles = document.querySelector("#jss-server-side");
+  //   if (jssStyles) {
+  //     jssStyles.parentNode.removeChild(jssStyles);
+  //   }
+  // }
 
   // Only uncomment this method if you have blocking data requirements for
   // every single page in your application. This disables the ability to
@@ -27,24 +27,15 @@ class MyApp extends App {
 
   //   return { ...appProps };
   // }
-  // render() {
-  //   const { Component, pageProps } = this.props;
-  //   return <Component {...pageProps} />;
-  // }
 
   render() {
-    const { Component, pageProps } = this.props;
-
+    const { Component, pageProps, reduxStore } = this.props;
     return (
-      <Container>
-        {/* <ThemeProvider theme={theme}> */}
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-        {/* <CssBaseline /> */}
+      <Provider store={reduxStore}>
         <Component {...pageProps} />
-        {/* </ThemeProvider> */}
-      </Container>
+      </Provider>
     );
   }
 }
 
-export default MyApp;
+export default withReduxStore(MyApp);

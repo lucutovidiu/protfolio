@@ -1,21 +1,43 @@
 import React from "react";
+import "../static/styles/_portfolios.scss";
 import BaseLayout from "../components/BaseLayout";
 import Portfolio_landing_page_Card from "../components/Portfolios/Portfolio_landing_page_Card";
-import { fetchGraphQL } from "../components/HelperFunctions";
+import useAuth from "../components/Auth/useAuth";
+import { Spinner, Button } from "react-bootstrap";
+import { GetPortfoliosOnServer } from "../components/HelperFunctions";
 
 function Portfolios(props) {
+  const auth = useAuth();
+  const [dataPort, setData] = React.useState(props.dataPort);
+  function ReRender(id) {
+    setData({
+      GetPortfolios: dataPort.GetPortfolios.filter(item => item.id !== id)
+    });
+  }
   return (
     <BaseLayout tab="Protfolios">
-      <div className="portfolios_main_wrapper m-0 p-0">
-        <div className="portfolios_title">
-          <h1>My Portfolios</h1>
-        </div>
+      <div className="main_wrapper">
+        <div className="main_wrapper_port m-0 p-0"></div>
+
+        {/* <div className="portfolios_title"></div> */}
         <div className="portfolios_card_wrapper mb-0 p-3">
-          {props.GetPortfolios.map((portfolio, id) => {
-            return (
-              <Portfolio_landing_page_Card key={id} portfolio={portfolio} />
-            );
-          })}
+          {dataPort !== null &&
+            dataPort.GetPortfolios.map((portfolio, id) => {
+              return (
+                <Portfolio_landing_page_Card
+                  auth={auth}
+                  key={id}
+                  portfolio={portfolio}
+                  ReRender={ReRender}
+                />
+              );
+            })}
+
+          {dataPort === null && (
+            <Spinner animation="border" role="status">
+              <span className="sr-only">Loading...</span>
+            </Spinner>
+          )}
         </div>
       </div>
     </BaseLayout>
@@ -23,15 +45,10 @@ function Portfolios(props) {
 }
 
 Portfolios.getInitialProps = async ({ req }) => {
-  const data = await fetchGraphQL(`{
-    GetPortfolios{
-     id
-    title
-      shortDescription
-      technologiesUsed
-    }
-    }`);
-  return { ...data };
+  let dataPort = await GetPortfoliosOnServer();
+  return { dataPort: dataPort };
+
+  //
 };
 
 export default Portfolios;

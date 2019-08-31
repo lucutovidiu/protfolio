@@ -11,9 +11,16 @@ $navbar_color: rgba(19, 19, 17, 0.9);
   z-index: 100;
   top: 0;
   height: 60px;
-
   width: 100vw;
   font-family: "Mina";
+}
+.a-button {
+  text-decoration: none;
+  font-size: 1.4rem;
+  color: rgb(158, 155, 155);
+  &:hover {
+    color: rgb(158, 155, 155);
+  }
 }
 //------------navbar wrapper------------
 //------------navbar mobile menu--------
@@ -49,6 +56,12 @@ $navbar_color: rgba(19, 19, 17, 0.9);
     & li {
       padding-top: 20px;
     }
+    .a-button {
+      text-decoration: none;
+      font-size: 1.4rem;
+      color: rgb(158, 155, 155);
+      margin: -0.8rem;
+    }
   }
   @media screen and (max-width: $break-large) {
     display: block;
@@ -60,6 +73,13 @@ $navbar_color: rgba(19, 19, 17, 0.9);
 //------------navbar mobile menu--------
 //------------navbar desktop menu-------
 .navBar_desktop_menu {
+  width: 100%;
+  & .navBar_desktop_logo {
+    float: left;
+    color: rgb(185, 185, 185);
+    padding-left: 1rem;
+  }
+
   @media screen and (max-width: $break-large) {
     display: none;
   }
@@ -67,14 +87,15 @@ $navbar_color: rgba(19, 19, 17, 0.9);
     padding: 0;
     margin: 0;
     list-style: none;
-
     font-size: 1.4rem;
-    float: right;
     line-height: 60px;
+    & .navBar_items_list {
+      float: right;
+    }
     & li {
-      float: left;
       text-decoration: none;
       padding-right: 25px;
+      float: left;
       & a {
         text-decoration: none;
         // color: red;

@@ -3,6 +3,10 @@ import BaseLayout from "../components/BaseLayout";
 import LandingPageInfo from "../components/LandingPageInfo";
 import * as Scroll from "react-scroll";
 import Footer from "../components/Footer";
+import "../static/styles/_index.scss";
+import HowWasThisSiteBuilt from "../components/HowWasThisSiteBuilt";
+
+// import "../static/styles/";
 
 function Home(props) {
   // const [getStarted, setGetStarted] = useState(false);
@@ -30,7 +34,7 @@ function Home(props) {
       </div>
       <div id="section1" className="clear-fix" />
       <LandingPageInfo />
-      <div id="section1" className="clear-fix" />
+      <HowWasThisSiteBuilt />
       <Footer />
     </BaseLayout>
   );

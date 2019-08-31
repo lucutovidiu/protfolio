@@ -1,8 +1,10 @@
 import React, { useState, useRef } from "react";
+import "../static/styles/_contactForm.scss";
 import BaseLayout from "../components/BaseLayout";
 import { Row, Col, Spinner } from "react-bootstrap";
 import validator from "validator";
 import fetch from "isomorphic-unfetch";
+import { useSelector } from "react-redux";
 
 function createHTMLMail(name, email, msg) {
   return `
@@ -40,6 +42,8 @@ const Contact = () => {
     msg: "Send Message",
     isSending: false
   });
+  const ruduxStore = useSelector(state => state);
+  // console.log(ruduxStore);
   const name = useRef("");
   const email = useRef("");
   const msg = useRef("");
@@ -86,13 +90,9 @@ const Contact = () => {
 
   return (
     <BaseLayout tab="Contact">
-      <div className="portfolios_main_wrapper">
-        <div className="container contact_form_main">
-          <br />
-          <br />
-          <br />
+      <div className="main_wrapper_contact">
+        <div className="contact_form_main">
           <div className="contact_form_wrapper">
-            <br />
             <Row>
               <div
                 className={
@@ -118,7 +118,16 @@ const Contact = () => {
                 </div>
 
                 <div className="group">
-                  <input type="text" required ref={email} />
+                  <input
+                    type="text"
+                    defaultValue={
+                      ruduxStore.isAuthenticaticated
+                        ? ruduxStore.loggedInUser
+                        : ""
+                    }
+                    required
+                    ref={email}
+                  />
                   {/* <span class="highlight" /> */}
                   <span className="bar" />
                   <label>Email</label>
@@ -153,6 +162,29 @@ const Contact = () => {
           </div>
         </div>
       </div>
+      <style jsx>{`
+        // -------------- main wrapper -------------
+        .main_wrapper_contact {
+          position: relative;
+          min-height: 100vh;
+          // ------------------- gradient -----------------------
+          // background-color: #485461;
+          background: radial-gradient(
+              circle closest-corner at center,
+              rgba(34, 34, 34, 0.918),
+              black 70%
+            )
+            no-repeat;
+          // ------------------- gradient -----------------------
+
+          // background-image: url(../img/portfolios_main3.jpg);
+          // background-position: top;
+          // background-repeat: no-repeat;
+          // background-size: cover;
+          //   margin-top: 70px;
+        }
+        // -------------- main wrapper -------------
+      `}</style>
     </BaseLayout>
   );
 };

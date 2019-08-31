@@ -69,3 +69,23 @@ $navbar_color: rgba(19, 19, 17, 0.5);
 }
 
 // ---------- langing page ------------
+// ---------- langing page info ------------
+
+.lp_info_wrapper {
+  //   color: rgb(169, 175, 175);
+  margin: 0;
+  // padding-top: 80px;
+  // height: 100vh;
+  border-radius: none;
+  // background-color: rgb(146, 143, 143);
+  & .lp_info_wrapper_intro {
+    padding-top: 1rem;
+    // padding-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    text-align: center;
+    font-size: 2.5rem;
+    font-family: "Hand Writing";
+  }
+}
+// ---------- langing page info ------------

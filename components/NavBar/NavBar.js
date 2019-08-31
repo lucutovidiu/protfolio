@@ -1,39 +1,62 @@
-import React, { useState } from "react";
+import React from "react";
 import NavbarMeniu from "./NavbarMeniu";
+import "../../static/styles/_NavBar.scss";
 
-export default function NavBar(props) {
-  const [openMenu, setOpenMenu] = useState(false);
-
-  function toggleMenu(e) {
-    // console.log(e);
-    e === "menu_btn" ? setOpenMenu(true) : setOpenMenu(!openMenu);
+export default class NavBar extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      openMenu: false
+    };
   }
 
-  return (
-    <nav className="navBar_wrapper">
-      <ul className="navBar_mobile_menu ">
-        <li id="navBar_mobile_menu-btn" className={openMenu ? "m-fadeOut" : ""}>
-          <span onClick={() => toggleMenu("menu_btn")}>
-            MENU <i className="hand fas fa-hand-point-left" />
-          </span>
-        </li>
-        <ul
-          className={
-            openMenu
-              ? "navBar_mobile_hidden_menu"
-              : "navBar_mobile_hidden_menu m-fadeOut"
-          }
-        >
-          <NavbarMeniu tab={props.tab} />
-          <li className="pointerCursor" onClick={() => toggleMenu("")}>
-            <i className="fas fa-long-arrow-alt-left" /> Back
+  toggleMenu(e) {
+    // console.log(e);
+    e === "menu_btn"
+      ? this.setState({ openMenu: true })
+      : this.setState({ openMenu: !this.state.openMenu });
+  }
+
+  render() {
+    const { openMenu } = this.state;
+    // console.log("updated");
+    return (
+      <nav className="navBar_wrapper">
+        <ul className="navBar_mobile_menu ">
+          <li
+            id="navBar_mobile_menu-btn"
+            className={openMenu ? "m-fadeOut" : ""}
+          >
+            <span onClick={() => this.toggleMenu("menu_btn")}>
+              MENU <i className="hand fas fa-hand-point-left" />
+            </span>
           </li>
+          <ul
+            className={
+              openMenu
+                ? "navBar_mobile_hidden_menu"
+                : "navBar_mobile_hidden_menu m-fadeOut"
+            }
+          >
+            <NavbarMeniu tab={this.props.tab} />
+            <li
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                this.toggleMenu("");
+              }}
+            >
+              <i className="fas fa-long-arrow-alt-left" /> Back
+            </li>
+          </ul>
         </ul>
-      </ul>
-      <ul className="navBar_desktop_menu">
-        <NavbarMeniu tab={props.tab} />
-      </ul>
-      <div />
-    </nav>
-  );
+        <ul className="navBar_desktop_menu">
+          <li className="navBar_desktop_logo">Ovidiu Lucut</li>
+          <span className="navBar_items_list">
+            <NavbarMeniu tab={this.props.tab} />
+          </span>
+        </ul>
+        <div />
+      </nav>
+    );
+  }
 }
