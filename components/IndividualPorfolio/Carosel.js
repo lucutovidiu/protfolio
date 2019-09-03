@@ -4,11 +4,14 @@ import { Carousel } from "react-bootstrap";
 const Carosel = props => {
   // console.log(props);
   return (
-    <Carousel>
-      {props.src.map(item => {
+    <Carousel fade touch>
+      {props.src.map((item, key) => {
         return (
-          <Carousel.Item>
+          <Carousel.Item key={key}>
             <img
+              style={{
+                objectFit: "cover"
+              }}
               className="d-block w-100"
               src={item.image_src}
               alt="First slide"
@@ -19,7 +22,11 @@ const Carosel = props => {
                 style={{
                   color: "#2980b9",
                   fontWeight: "bold",
-                  fontSize: "1.1rem"
+                  fontSize: "1.1rem",
+                  backgroundColor: "#ecf0f1",
+                  display: "inline-block",
+                  borderRadius: "10px",
+                  padding: "0.3rem 0.5rem"
                 }}
               >
                 {item.image_description}

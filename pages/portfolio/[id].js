@@ -5,6 +5,7 @@ import BaseLayout from "../../components/BaseLayout";
 import { Jumbotron, Container } from "react-bootstrap";
 import { fetchGraphQL } from "../../components/HelperFunctions";
 import "../../static/styles/_Portfolio_id.scss";
+import moment from "moment";
 
 const PortfolioID = props => {
   const [portfolioData, setData] = React.useState(null);
@@ -37,7 +38,10 @@ const PortfolioID = props => {
         console.log(err);
       });
   }
-
+  // var date1 = moment("2016-10-08 10:29:23");
+  // var date2 = moment("2016-10-08 11:06:55");
+  // var diff = date2.diff(date1);
+  // console.log(diff);
   React.useEffect(() => {
     if (typeof props.router.query.id !== "undefined") fetchArticle();
   }, [props.router.query.id]);
@@ -62,6 +66,24 @@ const PortfolioID = props => {
             <div className="portfolio_detail_techUsed">
               <p className="lead font-weight-bold">Tech Used</p>
               {portfolioData.technologiesUsed}
+            </div>
+            <div className="portfolio_detail_start_dates">
+              <p className="lead font-weight-bold">
+                Duration :{" "}
+                {moment(portfolioData.projectEndDate).diff(
+                  moment(portfolioData.projectStartDate),
+                  "weeks"
+                )}{" "}
+                Weeks
+              </p>
+              <div>
+                <span className="font-weight-bold">From</span>{" "}
+                {moment(portfolioData.projectStartDate).format("MMM Do YY")}
+                &nbsp;&nbsp;
+                <span className="font-weight-bold">To</span>{" "}
+                {moment(portfolioData.projectEndDate).format("MMM Do YY")}
+              </div>
+              <br />
             </div>
           </div>
         </Container>

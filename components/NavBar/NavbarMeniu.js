@@ -21,7 +21,7 @@ class NavbarMeniu extends React.Component {
   // console.log(isAuthenticaticated);
 
   btnRouteColor(routeName) {
-    return this.props.tab === routeName || typeof this.props.tab === "undefined"
+    return this.props.tab === routeName
       ? { color: "#3498db" }
       : { color: "rgb(158, 155, 155)" };
   }
@@ -62,7 +62,15 @@ class NavbarMeniu extends React.Component {
         </li>
         <li>
           {this.props.isAuthenticaticated ? (
-            <button className="a-button btn" onClick={this.LogOut}>
+            <button
+              style={{
+                textDecoration: "none",
+                fontSize: "1.4rem",
+                color: "rgb(158, 155, 155)"
+              }}
+              className="btn a-button"
+              onClick={this.LogOut}
+            >
               Logout
             </button>
           ) : (

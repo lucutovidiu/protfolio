@@ -6,11 +6,7 @@ import Footer from "../components/Footer";
 import "../static/styles/_index.scss";
 import HowWasThisSiteBuilt from "../components/HowWasThisSiteBuilt";
 
-// import "../static/styles/";
-
 function Home(props) {
-  // const [getStarted, setGetStarted] = useState(false);
-
   return (
     <BaseLayout tab="Home">
       <div className="langing_page_wrapper">
@@ -33,6 +29,7 @@ function Home(props) {
         </div>
       </div>
       <div id="section1" className="clear-fix" />
+      <br />
       <LandingPageInfo />
       <HowWasThisSiteBuilt />
       <Footer />
@@ -41,18 +38,3 @@ function Home(props) {
 }
 
 export default Home;
-// function Copyright() {
-//   return (
-//     <Typography variant="body2" color="textSecondary" align="center">
-//       {"Copyright © "}
-//       <MuiLink color="inherit" href="https://material-ui.com/">
-//         Your Website
-//       </MuiLink>{" "}
-//       {new Date().getFullYear()}
-//       {". Built with "}
-//       <MuiLink color="inherit" href="https://material-ui.com/">
-//         Material-UI.
-//       </MuiLink>
-//     </Typography>
-//   );
-// }

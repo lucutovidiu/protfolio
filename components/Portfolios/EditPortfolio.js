@@ -9,14 +9,18 @@ import {
   Jumbotron,
   Spinner
 } from "react-bootstrap";
-import MainForm, { MoreImages } from "./NewPortfolioForm/MainForm";
+import MainForm, {
+  MoreImages,
+  DeleteMoreImages
+} from "./NewPortfolioForm/MainForm";
 import validator from "validator";
 import CustomModel from "../HelperComponents/CustomModel";
 import { AddTimeStampToFileName } from "../HelperFunctions";
 
-const AddNewPortfolio = props => {
+const EditPortfolio = ({ portfolioData }) => {
   const initialState = {
     moreImages: [],
+    moreDeletedImages: [],
     title: "",
     shortDescription: "",
     technologiesUsed: "",
@@ -34,14 +38,40 @@ const AddNewPortfolio = props => {
     isSending: false,
     response: ""
   });
+  // console.log(portfolioData);
+  React.useEffect(() => {
+    if (portfolioData !== null) {
+      setFormFields({
+        moreImages: [],
+        moreDeletedImages: [],
+        title: portfolioData.title,
+        shortDescription: portfolioData.shortDescription,
+        technologiesUsed: portfolioData.technologiesUsed,
+        thumbImage: { path: "..\\..\\" + portfolioData.thumbImage },
+        fullDescription: portfolioData.fullDescription,
+        projectStartDate: new Date(portfolioData.projectStartDate),
+        projectEndDate: new Date(portfolioData.projectEndDate)
+      });
+    }
+  }, [portfolioData]);
   function handleClose() {
     setShowError({ show: false, msgBody: [] });
   }
+
   function onSubmit(e) {
     e.preventDefault();
     if (validate()) {
+      // console.log(formFields);
       const formData = new FormData();
-
+      formData.append("PortfolioTitle", formFields.title);
+      formData.append("shortDescription", formFields.shortDescription);
+      formData.append("technologiesUsed", formFields.technologiesUsed);
+      formData.append("fullDescription", formFields.fullDescription);
+      formData.append("projectStartDate", formFields.projectStartDate);
+      formData.append("projectEndDate", formFields.projectEndDate);
+      formData.append("portfolioID", portfolioData.id);
+      formData.append("rootDirectory", portfolioData.rootDirectory);
+      //send any new more images for carosel
       formFields.moreImages.length > 0 &&
         formFields.moreImages.forEach(image => {
           formData.append(
@@ -51,37 +81,53 @@ const AddNewPortfolio = props => {
           );
           formData.append("image_description", image.image_description);
         });
-      formData.append(
-        "thumbImage",
-        formFields.thumbImage,
-        AddTimeStampToFileName(formFields.thumbImage.name)
-      );
+      //send new thumbnail image if it was changed
+      if (!formFields.thumbImage.path) {
+        formData.append(
+          "thumbImage",
+          formFields.thumbImage,
+          AddTimeStampToFileName(formFields.thumbImage.name)
+        );
+      }
+      //sending the original thumbnail
+      formData.append("thumbImageOriginal", portfolioData.thumbImage);
 
-      formData.append("PortfolioTitle", formFields.title);
-      formData.append("shortDescription", formFields.shortDescription);
-      formData.append("technologiesUsed", formFields.technologiesUsed);
-      formData.append("fullDescription", formFields.fullDescription);
-      formData.append("projectStartDate", formFields.projectStartDate);
-      formData.append("projectEndDate", formFields.projectEndDate);
+      //send images that were delated from more images in portfolio
+      if (formFields.moreDeletedImages.length > 0) {
+        formFields.moreDeletedImages.forEach(delImg => {
+          formData.append("deletedMoreImages", delImg.image_src);
+        });
+      }
+      //send origianl more images
+      // console.log(portfolioData.moreImages);
+      if (portfolioData.moreImages.length > 0) {
+        portfolioData.moreImages.forEach(img => {
+          formData.append("origianlMoreImagesSRC", img.image_src);
+          formData.append(
+            "origianlMoreImagesDescription",
+            img.image_description
+          );
+        });
+      }
+
       let state = JSON.parse(window.sessionStorage.getItem("state"));
       formData.append("jwt", state.jwt);
-      /*
-{"done":true,"response":{"AddPortfolio":{"id":"5d6ad332feac6519844373ec"}}}
-*/
       setSendingPortfolio({ isSending: true, response: "" });
-      fetch("/api/fileUpload", {
+
+      fetch("/api/editPorfolio", {
         method: "POST",
         body: formData
       })
         .then(res => res.json())
         .then(result => {
           let res = JSON.parse(result);
+          window.location = "/editPortfolio/" + portfolioData.id;
           // console.log(res);
-          setSendingPortfolio({
-            isSending: false,
-            response: res
-          });
-          setFormFields(initialState);
+          // setSendingPortfolio({
+          //   isSending: false,
+          //   response: res
+          // });
+          // setFormFields(initialState);
         })
         .catch(err => {
           console.log(err);
@@ -89,10 +135,19 @@ const AddNewPortfolio = props => {
             isSending: false,
             response: "Error check console"
           });
-          setFormFields(initialState);
+          // setFormFields(initialState);
         });
     }
   }
+
+  //updating deleted images
+  function deteleImagesFromMoreImages(image) {
+    setFormFields(state => ({
+      ...state,
+      moreDeletedImages: [...state.moreDeletedImages, image]
+    }));
+  }
+
   //updateting more images
   function updateMoreImg(fieldType, imgObjID, value) {
     let moreImages = formFields.moreImages.slice();
@@ -198,12 +253,6 @@ const AddNewPortfolio = props => {
           }
         });
       }
-      if (r === "thumbImage" && typeof formFields[r] === "object") {
-        !formFields[r].type.startsWith("image") &&
-          errorArray.push(`${r} can only be an image!!`);
-        formFields[r].length === 0 &&
-          errorArray.push(`${r} can not be empty!!`);
-      }
     }
     if (errorArray.length > 0) {
       setShowError({ show: true, msgBody: errorArray });
@@ -211,6 +260,7 @@ const AddNewPortfolio = props => {
     }
     return true;
   }
+  // console.log(formFields);
   return (
     <>
       <Container className="newPortfolio_wrapper">
@@ -222,11 +272,33 @@ const AddNewPortfolio = props => {
                   updateMainForm={updateMainForm}
                   formFields={formFields}
                 />
+                <div>
+                  {portfolioData &&
+                    portfolioData.moreImages
+                      .filter(img => {
+                        return !formFields.moreDeletedImages.find(
+                          i => i.image_src === img.image_src
+                        )
+                          ? true
+                          : false;
+                      })
+                      .map((img, key) => (
+                        <DeleteMoreImages
+                          key={key}
+                          image={img}
+                          deteleImagesFromMoreImages={
+                            deteleImagesFromMoreImages
+                          }
+                        />
+                      ))}
+                </div>
                 <div className="text-dark font-weight-bold pb-3">
-                  More Images
+                  Add More Images to your portfolio
                 </div>
                 {formFields.moreImages.map((item, key) => (
-                  <div key={key}>{MoreImages(item.id, updateMoreImg)}</div>
+                  <div key={key}>
+                    {MoreImages(item.id, updateMoreImg, item)}
+                  </div>
                 ))}
                 <Button
                   variant="primary"
@@ -248,6 +320,23 @@ const AddNewPortfolio = props => {
                 >
                   Add More Images
                 </Button>
+                <Button
+                  variant="primary"
+                  className="ml-sm-3 mt-xs-2"
+                  onClick={() => {
+                    if (formFields.moreImages.length > 0) {
+                      let lastImage = formFields.moreImages.slice().pop();
+                      setFormFields(state => ({
+                        ...state,
+                        moreImages: state.moreImages.filter(
+                          img => img != lastImage
+                        )
+                      }));
+                    }
+                  }}
+                >
+                  Remove Last Image
+                </Button>
                 <br />
                 <br />
                 {!sendingPortfolio.isSending ? (
@@ -257,7 +346,7 @@ const AddNewPortfolio = props => {
                     </Button>
                   ) : sendingPortfolio.response.done ? (
                     <div className="p-3 mb-2 bg-success text-white">
-                      Portfolio successfully added
+                      Portfolio successfully Edited
                     </div>
                   ) : (
                     <div className="p-3 mb-2 bg-warning text-dark">
@@ -285,4 +374,4 @@ const AddNewPortfolio = props => {
 /*
 {"done":true,"response":{"AddPortfolio":{"id":"5d6ad332feac6519844373ec"}}}
 */
-export default AddNewPortfolio;
+export default EditPortfolio;

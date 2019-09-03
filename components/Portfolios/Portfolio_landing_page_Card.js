@@ -14,7 +14,7 @@ const Portfolio_landing_page_Card = ({ portfolio, auth, ReRender }) => {
     );
     if (confirmation) {
       const query = `mutation{
-          RemovePortfolio(portfolioID: "${portfolio.id}")
+          RemovePortfolio(portfolioID: "${portfolio.id}",portfolioTitle:"${portfolio.title}")
           }`;
       const headers = {
         Authorization: auth.isAuthorized.jwt
@@ -69,7 +69,7 @@ const Portfolio_landing_page_Card = ({ portfolio, auth, ReRender }) => {
                 {auth.isAuthorized.checkResult === "FOUND" &&
                   auth.isAuthorized.role === "admin" && (
                     <>
-                      <Link href={"/portfolio/" + portfolio.id}>
+                      <Link href={"/editPortfolio/" + portfolio.id}>
                         <Button variant="secondary">Edit</Button>
                       </Link>
                       <Button onClick={RemovePortfolio} variant="danger">

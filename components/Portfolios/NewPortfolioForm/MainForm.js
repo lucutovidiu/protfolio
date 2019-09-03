@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const formSpacing = "pt-3 pb-3";
-const MainForm = ({ updateMainForm }) => {
+const MainForm = ({ updateMainForm, formFields }) => {
   return (
     <>
       <Form.Row>
@@ -13,6 +13,7 @@ const MainForm = ({ updateMainForm }) => {
             onChange={e => updateMainForm("title", e.target.value)}
             type="text"
             placeholder="Portfolio Title"
+            value={formFields.title}
           />
           <Form.Label className="text-dark font-weight-bold ">
             Portfolio Title
@@ -30,6 +31,7 @@ const MainForm = ({ updateMainForm }) => {
             onChange={e => updateMainForm("shortDescription", e.target.value)}
             type="text"
             placeholder="Short Description"
+            value={formFields.shortDescription}
           />
           <Form.Label className="text-dark font-weight-bold">
             <span className="">Short Description</span>
@@ -47,12 +49,20 @@ const MainForm = ({ updateMainForm }) => {
             onChange={e => updateMainForm("technologiesUsed", e.target.value)}
             type="text"
             placeholder="Technologies Used"
+            value={formFields.technologiesUsed}
           />
           <Form.Label className="text-dark font-weight-bold">
             <span className="">Technologies Used</span>
           </Form.Label>
         </Form.Group>
       </Form.Row>
+      {formFields.thumbImage.path && (
+        <>
+          <img className="img-thumbnail" src={formFields.thumbImage.path} />
+          <br />
+          <br />
+        </>
+      )}
 
       <Form.Row>
         <Form.Group className={formSpacing} as={Col} controlId="thumbImage">
@@ -78,6 +88,7 @@ const MainForm = ({ updateMainForm }) => {
             onChange={e => updateMainForm("fullDescription", e.target.value)}
             style={{ height: "10rem" }}
             placeholder="Full HTML Description "
+            value={formFields.fullDescription}
           />
           <Form.Label className="text-dark font-weight-bold">
             {/* <span className="">Full Description HTML</span> */}
@@ -93,7 +104,7 @@ const MainForm = ({ updateMainForm }) => {
           <Col sm={6}>
             <DatePicker
               onChange={e => updateMainForm("projectStartDate", e)}
-              selected={new Date()}
+              selected={formFields.projectStartDate}
             />
           </Col>
         </Row>
@@ -107,7 +118,7 @@ const MainForm = ({ updateMainForm }) => {
           <Col sm={6}>
             <DatePicker
               onChange={e => updateMainForm("projectEndDate", e)}
-              selected={new Date()}
+              selected={formFields.projectEndDate}
             />
           </Col>
         </Row>
@@ -118,7 +129,7 @@ const MainForm = ({ updateMainForm }) => {
 
 export default MainForm;
 
-export function MoreImages(imgObjID, updateMoreImg) {
+export function MoreImages(imgObjID, updateMoreImg, image) {
   return (
     <>
       <Form.Group as={Row} controlId="formImgSrc1">
@@ -157,6 +168,30 @@ export function MoreImages(imgObjID, updateMoreImg) {
           />
         </Col>
       </Form.Group>
+    </>
+  );
+}
+
+export function DeleteMoreImages({ image, deteleImagesFromMoreImages }) {
+  // console.log(image);
+  return (
+    <>
+      <div className="font-weight-bold">Carosel Images you already have</div>
+      <br />
+      <img className="img-thumbnail" src={"..\\..\\" + image.image_src} />
+      <div>
+        <span className="font-weight-bold">Image Title:</span>{" "}
+        {image.image_description}
+      </div>
+      <div className="text-center">
+        <span
+          className="btn btn-info"
+          onClick={() => deteleImagesFromMoreImages(image)}
+        >
+          Delete this Image
+        </span>
+      </div>
+      <br />
     </>
   );
 }

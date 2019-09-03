@@ -31,14 +31,38 @@ export const checkIfisAuthorized = async function(jwtToken) {
 
 export function GetPortfoliosOnServer() {
   let query =
-    "{GetPortfolios{id title shortDescription technologiesUsed thumbImage }}";
+    "{GetPortfolios{id title shortDescription technologiesUsed thumbImage rootDirectory }}";
   return client.request(query);
 }
 
 export function AddTimeStampToFileName(fileName) {
   let timeStamp = new Date().getTime();
   let withoutExtension = fileName.split(/\..*$/)[0];
-  withoutExtension += timeStamp;
+  withoutExtension += "_" + timeStamp;
   let extension = fileName.match(/\..*$/)[0];
   return withoutExtension + extension;
+}
+
+export function getPortofolioGraphQueryByID(id) {
+  return `
+  {
+    GetPortfolio(_id:"${id}"){
+      id
+      title
+      shortDescription
+      technologiesUsed
+      thumbImage
+      moreImages{
+        image_src
+        image_description
+      }
+      fullDescription
+      projectStartDate
+      projectEndDate
+      rootDirectory
+      createdAt
+      updatedAt
+    }
+  }
+  `;
 }
