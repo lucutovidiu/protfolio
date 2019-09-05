@@ -13,10 +13,10 @@ const {
 Router.post("/api/sendMail", async (req, res, next) => {
   try {
     let response = await Mailer.SendMail(req.body.payload.data);
-    // console.log(response);
+    console.log(response);
     res.status(200).json(JSON.stringify({ wasError: "false" }));
   } catch (err) {
-    // console.log(err);
+    console.log(err);
     res.status(200).json(JSON.stringify({ wasError: "false" }));
   }
 });
