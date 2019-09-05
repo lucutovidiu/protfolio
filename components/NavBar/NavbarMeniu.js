@@ -51,12 +51,12 @@ class NavbarMeniu extends React.Component {
           )}
         </li>
         <li>
-          <Link href="/contact" as="/Contact">
+          <Link href="/Contact" as="/Contact">
             <a style={this.btnRouteColor("Contact")}>Contact</a>
           </Link>
         </li>
         <li>
-          <Link href="/about">
+          <Link href="/About" as="/About">
             <a style={this.btnRouteColor("About")}>About</a>
           </Link>
         </li>
@@ -74,7 +74,7 @@ class NavbarMeniu extends React.Component {
               Logout
             </button>
           ) : (
-            <Link href="/login">
+            <Link href="/Login" as="/Login">
               <a style={this.btnRouteColor("Login")}>Login</a>
             </Link>
           )}
