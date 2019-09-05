@@ -51,7 +51,7 @@ class NavbarMeniu extends React.Component {
           )}
         </li>
         <li>
-          <Link href="/contact" as="/contact">
+          <Link href="/contact" as="/Contact">
             <a style={this.btnRouteColor("Contact")}>Contact</a>
           </Link>
         </li>
