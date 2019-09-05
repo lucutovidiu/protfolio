@@ -7,7 +7,8 @@
     "dev": "cross-env NODE_ENV=development nodemon --watch server ./server/server.js",
     "build": "next build",
     "start": "cross-env NODE_ENV=production node ./server/server.js",
-    "ts": "nodemon ./server/MongoDB/mongoServer.js"
+    "ts": "nodemon ./server/MongoDB/mongoServer.js",
+    "heroku-postbuild": "npm run build"
   },
   "keywords": [],
   "author": "",
