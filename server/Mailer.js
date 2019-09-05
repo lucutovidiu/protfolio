@@ -1,12 +1,12 @@
 let mailer = require("nodemailer");
-let private = require("../private");
+// let private = require("../private");
 let smtpTransport = mailer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
   secure: true, //true for 465 port, false for other ports
   auth: {
-    user: process.env.EmailUserName || private.EmailUserName,
-    pass: process.env.EmailPassword || private.EmailPassword
+    user: process.env.EmailUserName,
+    pass: process.env.EmailPassword
   },
   tls: {
     rejectUnauthorized: false

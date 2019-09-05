@@ -1,6 +1,6 @@
 const allowedGuestGraphQuery = ["GetPortfolios", "GetPortfolio", "TryLogin"];
 const jwt = require("jsonwebtoken");
-const secret = require("../../../private");
+// const secret = require("../../../private");
 
 exports.GraphQLAuthRoute = (req, res, next) => {
   const query = req.body.query;
@@ -18,7 +18,7 @@ exports.GraphQLAuthRoute = (req, res, next) => {
     try {
       const token = jwt.verify(
         req.headers.authorization,
-        process.env.JWTSecret || secret.JWTSecret
+        process.env.JWTSecret
       );
       if (token) next();
     } catch (err) {
@@ -29,7 +29,7 @@ exports.GraphQLAuthRoute = (req, res, next) => {
 };
 exports.JWTAuthRoute = (req, res, next) => {
   try {
-    const token = jwt.verify(req.headers.jwt.trim(), "mysupersecret");
+    // const token = jwt.verify(req.headers.jwt.trim(), "mysupersecret");
     next();
   } catch (err) {
     res.status(401).send({ msg: "forbidden request" });

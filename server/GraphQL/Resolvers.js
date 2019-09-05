@@ -2,7 +2,7 @@ const { Portfolio, User } = require("../MongoDB/Models");
 const { GraphQLID } = require("graphql");
 var bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const private = require("../../private");
+// const private = require("../../private");
 let fs = require("fs-extra");
 const path = require("path");
 
@@ -61,13 +61,9 @@ var rootValue = {
         return bcrypt.compare(password, user.password).then(res => {
           // console.log(res);
           if (res) {
-            const jwtToken = jwt.sign(
-              { userEmail },
-              process.env.JWTSecret || private.JWTSecret,
-              {
-                expiresIn: "1h"
-              }
-            );
+            const jwtToken = jwt.sign({ userEmail }, process.env.JWTSecret, {
+              expiresIn: "1h"
+            });
             return JSON.stringify({ jwtToken, role: user.role, msg: "ok" });
           } else {
             return JSON.stringify({
