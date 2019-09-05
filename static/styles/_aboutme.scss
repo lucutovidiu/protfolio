@@ -107,7 +107,7 @@
           @include textGradient($leftGradient: true);
         }
         &_content {
-          padding: 2rem 0;
+          padding: 2rem 1rem;
           text-indent: 1.5rem;
           text-align: justify;
           font-weight: 600;
