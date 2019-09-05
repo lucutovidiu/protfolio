@@ -1,6 +1,6 @@
 import { GraphQLClient } from "graphql-request";
 import fetch from "isomorphic-unfetch";
-const client = new GraphQLClient("http://localhost:3000/api/graphql");
+const client = new GraphQLClient(process.env.BASE_URI + "/api/graphql");
 
 export const fetchGraphQL = async function(query, headers = null) {
   if (headers) {
