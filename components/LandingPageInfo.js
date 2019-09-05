@@ -21,9 +21,9 @@ const LandingPageInfo = props => {
               progress and get a lot better at programming.
             </p>
             <div className=" text-left pt-0 mt-0 mb-3">
-              <Link href="/about">
+              {/* <Link href="/about">
                 <a className="badge">Check my story on the About Page</a>
-              </Link>
+              </Link> */}
             </div>
           </div>
           <div className="col-md-6">
@@ -40,15 +40,13 @@ const LandingPageInfo = props => {
               in which I see big potential. So at the moment I put more efort
               into developing skills like:{" "}
               <span className="font-weight-bold small">
-                HTML, CSS, JAVASCRIPT/REACT, NODE/EXPRESS, MySql,
-                MongoDB/GraphQL and Frameworks related to them.
+                HTML, CSS / SCSS, JAVASCRIPT / REACT, NODE / EXPRESS, MySql,
+                MongoDB / GraphQL and Frameworks related to them.
               </span>
             </p>
             <div className="text-left pt-0 mt-0 ">
               <Link href="/about">
-                <a className="badge">
-                  Please check out a full deschiption on the About Page
-                </a>
+                <a className="badge">Checkout my About Page</a>
               </Link>
             </div>
           </div>

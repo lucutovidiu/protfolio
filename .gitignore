@@ -1,4 +1,7 @@
 node_modules
-server
 .next
 private.js
+next.config.js
+portfolios.txt
+users.txt
+./server/MongoDB/mongoServer.js

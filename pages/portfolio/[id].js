@@ -25,6 +25,8 @@ const PortfolioID = props => {
         fullDescription
         projectStartDate
         projectEndDate
+        httpAccessLink
+        repoLink
         createdAt
         updatedAt
       }
@@ -32,6 +34,7 @@ const PortfolioID = props => {
     `;
     fetchGraphQL(query)
       .then(data => {
+        console.log(data);
         setData({ ...data.GetPortfolio });
       })
       .catch(err => {
@@ -83,6 +86,35 @@ const PortfolioID = props => {
                 <span className="font-weight-bold">To</span>{" "}
                 {moment(portfolioData.projectEndDate).format("MMM Do YY")}
               </div>
+              {portfolioData.httpAccessLink !== "" && (
+                <div className="portfolio_detail_techUsed">
+                  <p className="lead font-weight-bold">
+                    Live website link:{" "}
+                    <a
+                      className="btn btn-light"
+                      target="_blank"
+                      href={portfolioData.httpAccessLink}
+                    >
+                      {portfolioData.title} Live
+                    </a>
+                  </p>
+                </div>
+              )}
+              {portfolioData.repoLink !== "" && (
+                <div className="portfolio_detail_techUsed">
+                  <p className="lead font-weight-bold">
+                    Github link:{" "}
+                    <a
+                      className="btn btn-light"
+                      target="_blank"
+                      href={portfolioData.repoLink}
+                    >
+                      {portfolioData.title} Github
+                    </a>
+                  </p>
+                </div>
+              )}
+
               <br />
             </div>
           </div>

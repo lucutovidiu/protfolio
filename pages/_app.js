@@ -3,7 +3,7 @@ import App, { Container } from "next/app";
 import "../static/styles/_mainStyle.scss";
 import "../static/styles/_helperClases.scss";
 import "../static/styles/_materialDesignInput.scss";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/scss/bootstrap.scss";
 import { Provider } from "react-redux";
 import withReduxStore from "../components/React-Redux/with-redux-store";
 
