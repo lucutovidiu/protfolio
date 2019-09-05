@@ -8,12 +8,12 @@ const graphqlHTTP = require("express-graphql");
 const schema = require("./GraphQL/Schema");
 const rootValue = require("./GraphQL/Resolvers");
 const { GraphQLAuthRoute } = require("./GraphQL/auth/authMiddlewere");
-
+require("dotenv/config");
 const dev = process.env.NODE_ENV !== "production";
 const SERVER_PORT = process.env.PORT || 3000;
 const nextApp = next({ dev });
 const nextRoutesHandler = nextApp.getRequestHandler();
-
+console.log("--------", process.end.OVI_MSG);
 nextApp
   .prepare()
   .then(() => {
