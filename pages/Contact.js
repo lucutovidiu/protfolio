@@ -140,7 +140,7 @@ const Contact = () => {
                 <textarea
                   className="input_text_area col"
                   rows="4"
-                  style={{ width: "210px" }}
+                  style={{ minWidth: "210px" }}
                   placeholder="Message"
                   required
                   ref={msg}
