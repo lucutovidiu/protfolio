@@ -108,7 +108,11 @@ const Contact = () => {
             <h1 className="contact_form_title p-2">
               Contact <span style={{ color: "#01c851" }}>Me</span>
             </h1>
-            <Col sm={{ span: 8, offset: 2 }} className="pt-4">
+            <Col
+              xs={{ span: 8, offset: 2 }}
+              className="pt-4"
+              style={{ padding: "" }}
+            >
               <form onSubmit={onSubmit}>
                 <div className="group">
                   <input type="text" required ref={name} />
@@ -136,6 +140,7 @@ const Contact = () => {
                 <textarea
                   className="input_text_area col"
                   rows="4"
+                  style={{ width: "210px" }}
                   placeholder="Message"
                   required
                   ref={msg}
