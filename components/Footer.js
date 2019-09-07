@@ -46,7 +46,8 @@ const Footer = () => {
               position: "relative",
               top: "15px",
               left: "9px",
-              borderRadius: "2px"
+              borderRadius: "2px",
+              padding: "0.2rem 0.3rem"
             }}
             className="img-responsive"
             src={path}
@@ -70,7 +71,7 @@ const Footer = () => {
               {FooterCard("BootStrap", "fab fa-bootstrap")}
               {FooterCard("React", "fab fa-react")}
               {FooterCard("Nodejs", "fab fa-node-js")}
-              {FooterCardImg("Next.js", "../static/img/logos/Nextjs-logo.svg")}
+              {FooterCardImg("Next.js", "../static/img/logos/next-js-logo.png")}
             </div>
           </div>
           <div className="col-md-4">

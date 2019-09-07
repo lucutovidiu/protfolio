@@ -24,8 +24,8 @@ module.exports.SendMail = data =>
     };
 
     smtpTransport.sendMail(mail, function(error, response) {
-      console.log("--UserName--:", process.env.EmailUserName);
-      console.log("--Password--:", process.env.EmailPassword);
+      // console.log("--UserName--:", process.env.EmailUserName);
+      // console.log("--Password--:", process.env.EmailPassword);
       if (error) {
         //res.send(JSON.stringify(error));
         res(error);
