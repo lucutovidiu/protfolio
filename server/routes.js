@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 // const secret = require("../private");
 let multer = require("multer");
 const {
-  GetGeoLocationAndEmail,
+  saveGeoLocationToDatabase,
   sendContactMail,
   GetAllMessages
 } = require("./ServerhelperFunctions");
@@ -18,11 +18,11 @@ const {
 Router.post("/api/sendMail", async (req, res, next) => {
   sendContactMail(req, res);
 });
-Router.get("/api/sendMail/visitor", async (req, res, next) => {
-  GetGeoLocationAndEmail(req);
-});
+// Router.get("/api/sendMail/visitor", async (req, res, next) => {
+//   saveGeoLocationToDatabase(req);
+// });
 
-Router.get("/msg/getAllMessages", async (req, res, next) => {
+Router.get("/api/getAllMessages", async (req, res, next) => {
   let data = await GetAllMessages();
   res.send(data);
 });
@@ -43,5 +43,9 @@ Router.post("/api/CheckIfAuthenticated", (req, res) => {
     res.status(401).json(JSON.stringify({ isAuthorized: err }));
   }
 });
+// Router.get("/", (req, res, next) => {
+//   saveGeoLocationToDatabase(req);
+//   next();
+// });
 
 module.exports = Router;

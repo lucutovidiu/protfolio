@@ -13,6 +13,7 @@ const dev = process.env.NODE_ENV !== "production";
 const SERVER_PORT = process.env.PORT || 3000;
 const nextApp = next({ dev });
 const nextRoutesHandler = nextApp.getRequestHandler();
+const { saveGeoLocationToDatabase } = require("./ServerhelperFunctions");
 
 nextApp
   .prepare()
@@ -40,6 +41,9 @@ nextApp
         expressApp.use(routes);
 
         expressApp.get("*", (req, res) => {
+          if (req.url === "/") {
+            saveGeoLocationToDatabase(req);
+          }
           return nextRoutesHandler(req, res);
         });
 

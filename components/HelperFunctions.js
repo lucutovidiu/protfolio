@@ -91,3 +91,9 @@ export async function sendMailVisitor() {
     }
   });
 }
+export async function GetAllMessages() {
+  try {
+    let json = await fetch("/api/getAllMessages");
+    return json.json();
+  } catch (err) {}
+}

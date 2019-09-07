@@ -1,7 +1,7 @@
 let fs = require("fs");
 const path = require("path");
 const fetch = require("isomorphic-unfetch");
-const Mailer = require("./Mailer");
+// const Mailer = require("./Mailer");
 const { UserMessages } = require("./MongoDB/Models");
 
 exports.addImgToPortfolio = function(portfolioName, imageName, buffer) {
@@ -58,8 +58,11 @@ exports.createGraphQLQueryFromArray = function(array) {
 };
 
 exports.sendContactMail = async (req, res) => {
+  let geoLocation = JSON.stringify(getGeoLocation(getClientIPAddress(req)));
   let msg = new UserMessages({
-    message: JSON.stringify(req.body.payload.data)
+    message: JSON.stringify(req.body.payload.data),
+    geoLocation: getGeoLocation,
+    type: "EMAIL"
   });
   msg.save().then(() => {
     res.status(200).json(JSON.stringify({ wasError: "false" }));
@@ -73,29 +76,36 @@ exports.sendContactMail = async (req, res) => {
   // }
 };
 
-exports.GetGeoLocationAndEmail = async function(req) {
-  var ip =
+function getClientIPAddress(req) {
+  return (
     (req.headers["x-forwarded-for"] || "").split(",").pop() ||
     req.connection.remoteAddress ||
     req.socket.remoteAddress ||
-    req.connection.socket.remoteAddress;
+    req.connection.socket.remoteAddress
+  );
+}
+
+async function getGeoLocation(ip) {
   // https://ipapi.co/109.99.10.27/json/
-  fetch(`https://ipapi.co/${ip}/json/`)
-    .then(r => r.json())
-    .then(data => {
-      // console.log("----Incoming request -----", data);
-      let email = {
-        emailToAddress: "lucut_ovidiu@yahoo.com",
-        emailSubject: "New Visitor",
-        emailMsg: JSON.stringify(data)
-      };
-      let msg = new UserMessages({ message: JSON.stringify(email) });
-      msg.save();
-      // Mailer.SendMail(email)
-      //   .then(console.log)
-      //   .catch(err => console.log("email send error", err));
-    })
-    .catch(err => console.log("ip geo request error", err));
+  try {
+    return await fetch(`https://ipapi.co/${ip}/json/`);
+  } catch (err) {
+    console.log("GEO LOCATION ERROR: ", err);
+  }
+}
+
+module.exports.getClientIPAddress = getClientIPAddress;
+
+exports.saveGeoLocationToDatabase = async function(req) {
+  let geoLocation = JSON.stringify(getGeoLocation(getClientIPAddress(req)));
+  // if (!geoLocation.includes("Halmeu") && geoLocation.includes("country_name")) {
+  let message = {
+    geoLocation: geoLocation,
+    type: "VISIT"
+  };
+  let msg = new UserMessages(message);
+  msg.save();
+  // }
 };
 
 exports.GetAllMessages = async function() {
