@@ -70,7 +70,7 @@ exports.sendContactMail = async (req, res) => {
   let geoLocation = JSON.stringify(getGeoLocation(getClientIPAddress(req)));
   let msg = new UserMessages({
     message: JSON.stringify(req.body.payload.data),
-    geoLocation: getGeoLocation,
+    geoLocation: geoLocation,
     type: "EMAIL"
   });
   msg.save().then(() => {
