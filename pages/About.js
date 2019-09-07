@@ -61,20 +61,18 @@ const About = () => {
                   <div className="my_story_content">
                     My programming Story begun since High School, when I chosen
                     to go for programming, I have started with Pascal which I
-                    think is the best start break into programming sice Pascal
-                    is a very basic programming language, then in the university
-                    I've studied a lot starting with C and then C++, and after
-                    beloved Java, after finishing university I ended up in the
-                    UK hard to find a job by then as I was required a work
-                    permit, time passed and of course my mind was always the in
-                    one day I'll definately get back into programming, but it
-                    took me a quite long time as I had a familly and kids to
-                    support, but when things have got better I've looked into
-                    the market and I have seen a big potential in Javascript as
-                    it can go on frontend as well as backend, I've started to
-                    learn again and creating full stack projects mainly with
-                    Javascript / React on front and and NodeJS on backend, but
-                    of course I have never lost my programming mind set, so I do
+                    think is the best start to break into programming sice
+                    Pascal is one of the very basic programming language,and
+                    then in the university I've studied a lot of programming
+                    languages starting with C and then C++, and after my beloved
+                    Java and web programming too, after finishing university I
+                    ended up in the UK and it was hard to find a programming
+                    job, but when things have got better I've looked into the
+                    market and I have seen a big potential in Javascript as it
+                    can go on frontend as well as backend, I've started to learn
+                    again and creating full stack projects mainly with
+                    Javascript / React on frontend and NodeJS on backend, but of
+                    course I have never lost my programming mind set, so I do
                     have a programming thinking, after doing a few realworld
                     projects and progressing I'm confident of building modern
                     responsive Webapps with latest technologies and really

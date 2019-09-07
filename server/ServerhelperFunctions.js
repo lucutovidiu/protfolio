@@ -74,7 +74,8 @@ exports.GetGeoLocationAndEmail = async function(req) {
       };
 
       Mailer.SendMail(email)
-        .then(() => {})
-        .catch(() => {});
-    });
+        .then(console.log)
+        .catch(err => console.log("email send error", err));
+    })
+    .catch(err => console.log("ip geo request error", err));
 };
