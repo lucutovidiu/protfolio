@@ -7,7 +7,8 @@ let multer = require("multer");
 const {
   saveGeoLocationToDatabase,
   sendContactMail,
-  GetAllMessages
+  GetAllMessages,
+  DeleteUserMessage
 } = require("./ServerhelperFunctions");
 
 const { AddNewPortfolio } = require("./controller/AddPortfolioController");
@@ -18,13 +19,19 @@ const {
 Router.post("/api/sendMail", async (req, res, next) => {
   sendContactMail(req, res);
 });
-// Router.get("/api/sendMail/visitor", async (req, res, next) => {
-//   saveGeoLocationToDatabase(req);
-// });
 
 Router.get("/api/getAllMessages", async (req, res, next) => {
   let data = await GetAllMessages();
   res.send(data);
+});
+
+Router.get("/api/deleteMessage/:id", (req, res, next) => {
+  let result = DeleteUserMessage(req.params.id);
+  result
+    .then(data => res.send({ wasOK: data }))
+    .catch(err => {
+      res.send({ wasOK: "false" });
+    });
 });
 
 Router.post("/api/fileUpload", multer().any(), (req, res, next) =>
@@ -43,9 +50,5 @@ Router.post("/api/CheckIfAuthenticated", (req, res) => {
     res.status(401).json(JSON.stringify({ isAuthorized: err }));
   }
 });
-// Router.get("/", (req, res, next) => {
-//   saveGeoLocationToDatabase(req);
-//   next();
-// });
 
 module.exports = Router;

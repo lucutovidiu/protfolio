@@ -116,3 +116,10 @@ exports.GetAllMessages = async function() {
     return err;
   }
 };
+exports.DeleteUserMessage = async function(_id) {
+  try {
+    return await UserMessages.findOneAndDelete({ _id });
+  } catch (err) {
+    return err;
+  }
+};

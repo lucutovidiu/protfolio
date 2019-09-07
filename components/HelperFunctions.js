@@ -97,3 +97,9 @@ export async function GetAllMessages() {
     return json.json();
   } catch (err) {}
 }
+export async function DeleteMsgByID(id) {
+  try {
+    let json = await fetch("/api/deleteMessage/" + id);
+    return json.json();
+  } catch (err) {}
+}
