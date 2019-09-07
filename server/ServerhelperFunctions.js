@@ -2,6 +2,7 @@ let fs = require("fs");
 const path = require("path");
 const fetch = require("isomorphic-unfetch");
 const Mailer = require("./Mailer");
+const { UserMessages } = require("./MongoDB/Models");
 
 exports.addImgToPortfolio = function(portfolioName, imageName, buffer) {
   let staticImg = path.resolve("static/img/portfolios");
@@ -56,6 +57,21 @@ exports.createGraphQLQueryFromArray = function(array) {
   return result;
 };
 
+exports.sendContactMail = async (req, res) => {
+  let msg = new UserMessages({
+    message: JSON.stringify(req.body.payload.data)
+  });
+  msg.save();
+  try {
+    let response = await Mailer.SendMail(req.body.payload.data);
+    // console.log(response);
+    res.status(200).json(JSON.stringify({ wasError: "false" }));
+  } catch (err) {
+    // console.log(err);
+    res.status(200).json(JSON.stringify({ wasError: "false" }));
+  }
+};
+
 exports.GetGeoLocationAndEmail = async function(req) {
   var ip =
     (req.headers["x-forwarded-for"] || "").split(",").pop() ||
@@ -72,10 +88,19 @@ exports.GetGeoLocationAndEmail = async function(req) {
         emailSubject: "New Visitor",
         emailMsg: JSON.stringify(data)
       };
-
+      let msg = new UserMessages({ message: JSON.stringify(email) });
+      msg.save();
       Mailer.SendMail(email)
         .then(console.log)
         .catch(err => console.log("email send error", err));
     })
     .catch(err => console.log("ip geo request error", err));
+};
+
+exports.GetAllMessages = async function() {
+  try {
+    return await UserMessages.find({});
+  } catch (err) {
+    return err;
+  }
 };

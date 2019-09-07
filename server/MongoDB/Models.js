@@ -37,3 +37,12 @@ module.exports.User = mongoose.model(
     { timestamps: true }
   )
 );
+module.exports.UserMessages = mongoose.model(
+  "UserMessages",
+  new mongoose.Schema(
+    {
+      message: !String
+    },
+    { timestamps: true }
+  )
+);
