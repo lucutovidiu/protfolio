@@ -65,9 +65,20 @@ function getClientIPAddress(req) {
     req.connection.socket.remoteAddress
   );
 }
+async function getGeoLocation(ip) {
+  // https://ipapi.co/109.99.10.27/json/
+  try {
+    let data = await fetch(`https://ipapi.co/${ip}/json/`);
+    let result = await data.json();
+    return result;
+  } catch (err) {
+    console.log("GEO LOCATION ERROR: ", err);
+  }
+}
 
 exports.sendContactMail = async (req, res) => {
-  let geoLocation = JSON.stringify(getGeoLocation(getClientIPAddress(req)));
+  let geoLoc = await getGeoLocation(getClientIPAddress(req));
+  let geoLocation = JSON.stringify(geoLoc);
   let msg = new UserMessages({
     message: JSON.stringify(req.body.payload.data),
     geoLocation: geoLocation,
@@ -85,25 +96,17 @@ exports.sendContactMail = async (req, res) => {
   // }
 };
 
-async function getGeoLocation(ip) {
-  // https://ipapi.co/109.99.10.27/json/
-  try {
-    return await fetch(`https://ipapi.co/${ip}/json/`);
-  } catch (err) {
-    console.log("GEO LOCATION ERROR: ", err);
-  }
-}
-
 exports.saveGeoLocationToDatabase = async function(req) {
-  let geoLocation = JSON.stringify(getGeoLocation(getClientIPAddress(req)));
-  // if (!geoLocation.includes("Halmeu") && geoLocation.includes("country_name")) {
-  let message = {
-    geoLocation: geoLocation,
-    type: "VISIT"
-  };
-  let msg = new UserMessages(message);
-  msg.save();
-  // }
+  let geoLoc = await getGeoLocation(getClientIPAddress(req));
+  let geoLocation = JSON.stringify(geoLoc);
+  if (!geoLoc.ip.includes("::1") && geoLocation.includes("country_name")) {
+    let message = {
+      geoLocation: geoLocation,
+      type: "VISIT"
+    };
+    let msg = new UserMessages(message);
+    msg.save();
+  }
 };
 
 exports.GetAllMessages = async function() {
