@@ -57,6 +57,15 @@ exports.createGraphQLQueryFromArray = function(array) {
   return result;
 };
 
+function getClientIPAddress(req) {
+  return (
+    (req.headers["x-forwarded-for"] || "").split(",").pop() ||
+    req.connection.remoteAddress ||
+    req.socket.remoteAddress ||
+    req.connection.socket.remoteAddress
+  );
+}
+
 exports.sendContactMail = async (req, res) => {
   let geoLocation = JSON.stringify(getGeoLocation(getClientIPAddress(req)));
   let msg = new UserMessages({
@@ -76,15 +85,6 @@ exports.sendContactMail = async (req, res) => {
   // }
 };
 
-function getClientIPAddress(req) {
-  return (
-    (req.headers["x-forwarded-for"] || "").split(",").pop() ||
-    req.connection.remoteAddress ||
-    req.socket.remoteAddress ||
-    req.connection.socket.remoteAddress
-  );
-}
-
 async function getGeoLocation(ip) {
   // https://ipapi.co/109.99.10.27/json/
   try {
@@ -93,8 +93,6 @@ async function getGeoLocation(ip) {
     console.log("GEO LOCATION ERROR: ", err);
   }
 }
-
-module.exports.getClientIPAddress = getClientIPAddress;
 
 exports.saveGeoLocationToDatabase = async function(req) {
   let geoLocation = JSON.stringify(getGeoLocation(getClientIPAddress(req)));
