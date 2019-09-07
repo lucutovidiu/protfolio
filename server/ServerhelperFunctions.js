@@ -61,15 +61,16 @@ exports.sendContactMail = async (req, res) => {
   let msg = new UserMessages({
     message: JSON.stringify(req.body.payload.data)
   });
-  msg.save();
-  try {
-    let response = await Mailer.SendMail(req.body.payload.data);
-    // console.log(response);
+  msg.save().then(() => {
     res.status(200).json(JSON.stringify({ wasError: "false" }));
-  } catch (err) {
-    // console.log(err);
-    res.status(200).json(JSON.stringify({ wasError: "false" }));
-  }
+  });
+  // try {
+  //   let response = await Mailer.SendMail(req.body.payload.data);
+  //   // console.log(response);
+  // } catch (err) {
+  //   // console.log(err);
+  //   res.status(200).json(JSON.stringify({ wasError: "false" }));
+  // }
 };
 
 exports.GetGeoLocationAndEmail = async function(req) {
@@ -90,9 +91,9 @@ exports.GetGeoLocationAndEmail = async function(req) {
       };
       let msg = new UserMessages({ message: JSON.stringify(email) });
       msg.save();
-      Mailer.SendMail(email)
-        .then(console.log)
-        .catch(err => console.log("email send error", err));
+      // Mailer.SendMail(email)
+      //   .then(console.log)
+      //   .catch(err => console.log("email send error", err));
     })
     .catch(err => console.log("ip geo request error", err));
 };
