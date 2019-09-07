@@ -67,3 +67,27 @@ export function getPortofolioGraphQueryByID(id) {
   }
   `;
 }
+
+export async function sendMail(data) {
+  return fetch("/api/sendMail", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      payload: { data }
+    })
+  })
+    .then(r => r.json())
+    .then(data => {
+      return data;
+    });
+}
+export async function sendMailVisitor() {
+  return fetch("/api/sendMail/visitor", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
+}

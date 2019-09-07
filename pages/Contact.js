@@ -5,6 +5,7 @@ import { Row, Col, Spinner } from "react-bootstrap";
 import validator from "validator";
 import fetch from "isomorphic-unfetch";
 import { useSelector } from "react-redux";
+import { sendMail } from "../components/HelperFunctions";
 
 function createHTMLMail(name, email, msg) {
   return `
@@ -18,22 +19,6 @@ function createHTMLMail(name, email, msg) {
 
     <br/> <br/>
     `;
-}
-
-async function sendMail(data) {
-  return fetch("/api/sendMail", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      payload: { data }
-    })
-  })
-    .then(r => r.json())
-    .then(data => {
-      return data;
-    });
 }
 
 const Contact = () => {

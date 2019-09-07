@@ -1,7 +1,11 @@
 import React from "react";
 import Link from "next/link";
+import { sendMailVisitor } from "./HelperFunctions";
 
 const LandingPageInfo = props => {
+  React.useEffect(() => {
+    sendMailVisitor();
+  }, []);
   return (
     <div className="lp_info_wrapper pt-4">
       <div className="container">

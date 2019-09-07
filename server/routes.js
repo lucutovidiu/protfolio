@@ -4,6 +4,7 @@ const Mailer = require("./Mailer");
 const jwt = require("jsonwebtoken");
 // const secret = require("../private");
 let multer = require("multer");
+const { GetGeoLocationAndEmail } = require("./ServerhelperFunctions");
 
 const { AddNewPortfolio } = require("./controller/AddPortfolioController");
 const {
@@ -19,6 +20,9 @@ Router.post("/api/sendMail", async (req, res, next) => {
     // console.log(err);
     res.status(200).json(JSON.stringify({ wasError: "false" }));
   }
+});
+Router.get("/api/sendMail/visitor", async (req, res, next) => {
+  GetGeoLocationAndEmail(req);
 });
 
 Router.post("/api/fileUpload", multer().any(), (req, res, next) =>

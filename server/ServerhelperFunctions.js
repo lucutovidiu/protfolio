@@ -1,5 +1,8 @@
 let fs = require("fs");
 const path = require("path");
+const fetch = require("isomorphic-unfetch");
+const Mailer = require("./Mailer");
+
 exports.addImgToPortfolio = function(portfolioName, imageName, buffer) {
   let staticImg = path.resolve("static/img/portfolios");
   let portNamePath = path.join(staticImg, portfolioName);
@@ -51,4 +54,27 @@ exports.createGraphQLQueryFromArray = function(array) {
   result = result.substr(0, result.length - 1) + "]";
 
   return result;
+};
+
+exports.GetGeoLocationAndEmail = async function(req) {
+  var ip =
+    (req.headers["x-forwarded-for"] || "").split(",").pop() ||
+    req.connection.remoteAddress ||
+    req.socket.remoteAddress ||
+    req.connection.socket.remoteAddress;
+  // https://ipapi.co/109.99.10.27/json/
+  fetch(`https://ipapi.co/${ip}/json/`)
+    .then(r => r.json())
+    .then(data => {
+      // console.log("----Incoming request -----", data);
+      let email = {
+        emailToAddress: "lucut_ovidiu@yahoo.com",
+        emailSubject: "New Visitor",
+        emailMsg: JSON.stringify(data)
+      };
+
+      Mailer.SendMail(email)
+        .then(() => {})
+        .catch(() => {});
+    });
 };
