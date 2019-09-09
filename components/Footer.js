@@ -86,7 +86,7 @@ const Footer = () => {
           <div className="col-md-4">
             <h6 className="mt-3">Contact Me</h6>
             <div className="footer_what_i_do">
-              {FooterCard("Email", "far fa-envelope", { anchor: "/contact" })}
+              {FooterCard("Email", "far fa-envelope", { anchor: "/Contact" })}
               {FooterCard("LinkedIn", "fab fa-linkedin", {
                 anchor: "https://www.linkedin.com/in/ovidiu-lucut-911962174",
                 target: "_blank"
