@@ -111,7 +111,7 @@ exports.saveGeoLocationToDatabase = async function(req) {
 
 exports.GetAllMessages = async function() {
   try {
-    return await UserMessages.find({});
+    return await UserMessages.find({}).sort({ timePageRequested: -1 });
   } catch (err) {
     return err;
   }
