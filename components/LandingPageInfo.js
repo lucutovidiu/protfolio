@@ -49,7 +49,7 @@ const LandingPageInfo = props => {
               </span>
             </p>
             <div className="text-left pt-0 mt-0 ">
-              <Link href="/about">
+              <Link href="/About">
                 <a className="badge">Checkout my About Page</a>
               </Link>
             </div>
