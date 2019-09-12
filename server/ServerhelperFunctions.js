@@ -1,7 +1,7 @@
 let fs = require("fs");
 const path = require("path");
 const fetch = require("isomorphic-unfetch");
-// const Mailer = require("./Mailer");
+const Mailer = require("./Mailer");
 const { UserMessages } = require("./MongoDB/Models");
 
 exports.addImgToPortfolio = function(portfolioName, imageName, buffer) {
@@ -85,15 +85,16 @@ exports.sendContactMail = async (req, res) => {
     type: "EMAIL"
   });
   msg.save().then(() => {
-    res.status(200).json(JSON.stringify({ wasError: "false" }));
+    // res.status(200).json(JSON.stringify({ wasError: "false" }));
   });
-  // try {
-  //   let response = await Mailer.SendMail(req.body.payload.data);
-  //   // console.log(response);
-  // } catch (err) {
-  //   // console.log(err);
-  //   res.status(200).json(JSON.stringify({ wasError: "false" }));
-  // }
+  try {
+    let response = await Mailer.SendMail(req.body.payload.data);
+    console.log(response);
+    res.status(200).json(JSON.stringify({ wasError: "false" }));
+  } catch (err) {
+    console.log(err);
+    res.status(401).json(JSON.stringify({ wasError: "true" }));
+  }
 };
 
 exports.saveGeoLocationToDatabase = async function(req) {
@@ -106,6 +107,16 @@ exports.saveGeoLocationToDatabase = async function(req) {
     };
     let msg = new UserMessages(message);
     msg.save();
+
+    try {
+      let response = await Mailer.SendMail({
+        emailSubject: "New Visit",
+        emailMsg: `New Visitor from : ${geoLocation} `
+      });
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+    }
   }
 };
 

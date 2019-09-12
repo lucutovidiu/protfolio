@@ -1,6 +1,5 @@
 const express = require("express");
 const Router = express.Router();
-const Mailer = require("./Mailer");
 const jwt = require("jsonwebtoken");
 // const secret = require("../private");
 let multer = require("multer");
