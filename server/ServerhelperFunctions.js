@@ -97,6 +97,20 @@ exports.sendContactMail = async (req, res) => {
   }
 };
 
+function convertJSONToTable(json) {
+  let table = "<table>";
+  for (let k in json) {
+    table += `
+    <tr>
+    <th>${k}</th>
+    <th>${json[k]}</th>
+  </tr>
+  `;
+  }
+  table += "</table>";
+  return table;
+}
+
 exports.saveGeoLocationToDatabase = async function(req) {
   let geoLoc = await getGeoLocation(getClientIPAddress(req));
   let geoLocation = JSON.stringify(geoLoc);
@@ -111,7 +125,8 @@ exports.saveGeoLocationToDatabase = async function(req) {
     try {
       let response = await Mailer.SendMail({
         emailSubject: "New Visit",
-        emailMsg: `New Visitor from : ${geoLocation} `
+        emailMsg: `New Visitor from : <br/>
+        ${convertJSONToTable(geoLoc)}`
       });
       console.log(response);
     } catch (err) {
