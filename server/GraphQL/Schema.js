@@ -2,10 +2,22 @@ var { buildSchema } = require("graphql");
 
 var schema = buildSchema(`
   scalar Date
+
   type PortImagesType{
     image_src: String!
     image_description: String!
   }
+
+  type UpcomingPortfolios{
+    id: ID
+    title: String!
+    shortDescription: String!
+    technologiesUsed: String!
+    httpAccessLink: String,
+    projectStartDate: Date,
+    repoLink: String
+  }
+
   type Portfolio {
     id: ID
     title: String!
@@ -69,6 +81,7 @@ var schema = buildSchema(`
     GetPortfolios: [Portfolio]
     GetPortfolio(_id:ID!): Portfolio
     GetUser(userEmail:String!): User!
+    GetUpcomingPortfolios:[UpcomingPortfolios!]!
     TryLogin(userEmail:String!,password:String!): String!
   }
   type RootMutation {

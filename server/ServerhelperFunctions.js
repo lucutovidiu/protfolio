@@ -125,7 +125,7 @@ exports.saveGeoLocationToDatabase = async function(req) {
     try {
       let response = await Mailer.SendMail({
         emailSubject: "New Visit",
-        emailMsg: `New Visitor from : <br/>
+        emailMsg: `New Visitor from : <br/><br/>
         ${convertJSONToTable(geoLoc)}`
       });
       console.log(response);

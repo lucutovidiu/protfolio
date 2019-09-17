@@ -4,7 +4,7 @@
   "description": "This is my portfolio website",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon --watch server ./server/server.js",
+    "dev": "nodemon --watch server ./server/server.js",
     "build": "next build",
     "start": "node ./server/server.js",
     "ts": "nodemon ./server/MongoDB/mongoServer.js",

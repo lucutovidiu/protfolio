@@ -1,4 +1,4 @@
-const { Portfolio, User } = require("../MongoDB/Models");
+const { Portfolio, User, UpcomingPortfolio } = require("../MongoDB/Models");
 const { GraphQLID } = require("graphql");
 var bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -83,6 +83,15 @@ var rootValue = {
     try {
       let user = await User.findOne({ userEmail: userEmail });
       return user;
+    } catch (err) {
+      return err;
+    }
+  },
+  GetUpcomingPortfolios: async () => {
+    console.log("upcomingPortfolio");
+    try {
+      let upcomingPortfolio = await UpcomingPortfolio.find({});
+      return upcomingPortfolio;
     } catch (err) {
       return err;
     }

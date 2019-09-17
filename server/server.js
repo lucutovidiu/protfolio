@@ -26,7 +26,7 @@ nextApp
         expressApp.use(bodyParser.json());
         expressApp.use(cors());
 
-        expressApp.use(express.static("../static"));
+        // expressApp.use(express.static("../static"));
 
         expressApp.use(
           "/api/graphql",

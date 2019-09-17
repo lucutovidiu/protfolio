@@ -3,9 +3,10 @@ import "../static/styles/_portfolios.scss";
 import BaseLayout from "../components/BaseLayout";
 import Portfolio_landing_page_Card from "../components/Portfolios/Portfolio_landing_page_Card";
 import useAuth from "../components/Auth/useAuth";
-import { Spinner, Button } from "react-bootstrap";
+import { Spinner } from "react-bootstrap";
 import { GetPortfoliosOnServer } from "../components/HelperFunctions";
-
+import { fetchGraphQL } from "../components/HelperFunctions";
+import UpcomingProject from "../components/Portfolios/UpcomingProject";
 function Portfolios(props) {
   const auth = useAuth();
   const [dataPort, setData] = React.useState(props.dataPort);
@@ -18,9 +19,12 @@ function Portfolios(props) {
     <BaseLayout tab="Protfolios">
       <div className="main_wrapper">
         <div className="main_wrapper_port m-0 p-0"></div>
-
         {/* <div className="portfolios_title"></div> */}
         <div className="portfolios_card_wrapper mb-0 p-3">
+          {props.GetUpcomingPortfolios.length > 0 &&
+            props.GetUpcomingPortfolios.map(upcomingPort => (
+              <UpcomingProject key={upcomingPort.id} portfolio={upcomingPort} />
+            ))}
           {dataPort !== null &&
             dataPort.GetPortfolios.map((portfolio, id) => {
               return (
@@ -46,7 +50,10 @@ function Portfolios(props) {
 
 Portfolios.getInitialProps = async ({ req }) => {
   let dataPort = await GetPortfoliosOnServer();
-  return { dataPort: dataPort };
+  let upcomingPort = await fetchGraphQL(
+    "{ GetUpcomingPortfolios { id title shortDescription technologiesUsed httpAccessLink projectStartDate repoLink } } "
+  );
+  return { dataPort: dataPort, ...upcomingPort };
 
   //
 };

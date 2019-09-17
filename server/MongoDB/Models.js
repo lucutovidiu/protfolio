@@ -46,3 +46,24 @@ module.exports.UserMessages = mongoose.model(
     timePageRequested: { type: Date, default: Date.now() }
   })
 );
+module.exports.UpcomingPortfolio = mongoose.model(
+  "UpcomingPortfolio",
+  new mongoose.Schema({
+    title: { type: String, unique: true },
+    shortDescription: !String,
+    technologiesUsed: !String,
+    httpAccessLink: { type: String, default: "" },
+    projectStartDate: Date,
+    repoLink: { type: String, default: "" }
+  })
+);
+
+// new this.UpcomingPortfolio({
+//   shortDescription:
+//     "Upcoming project, ... an online shopping store! please check below:",
+//   technologiesUsed:
+//     "Express / NextJS, Javascript / ReactJS, HTML, CSS / Material-UI",
+//   httpAccessLink: "https://my-eshopping.herokuapp.com/",
+//   projectStartDate: "2019-09-06",
+//   repoLink: "https://github.com/lucutovidiu/onlineshopping.git"
+// }).save();

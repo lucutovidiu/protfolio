@@ -1,6 +1,12 @@
 import { GraphQLClient } from "graphql-request";
 import fetch from "isomorphic-unfetch";
-let base_uri = process.env.BASE_URI || "https://lucutovidiu.herokuapp.com";
+
+let base_uri = "http://localhost:3000";
+if (typeof window !== "undefined") {
+  base_uri = window.origin;
+}
+
+// let base_uri = "https://lucutovidiu.herokuapp.com";
 const client = new GraphQLClient(base_uri + "/api/graphql");
 
 export const fetchGraphQL = async function(query, headers = null) {
