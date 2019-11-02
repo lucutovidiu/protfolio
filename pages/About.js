@@ -38,7 +38,7 @@ const About = () => {
                       </div>
                     </Col>
                     <Col md={4} className="get_in_tough_btn p-0">
-                      <Link href="/contact">
+                      <Link href="/Contact">
                         <a className="btn-gradient">Get In Touch</a>
                       </Link>
                       &nbsp;&nbsp;
