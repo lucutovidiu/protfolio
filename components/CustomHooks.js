@@ -6,7 +6,7 @@ export function useGetPortfolios() {
   if (!dataRequested) {
     setDataRequested(true);
 
-    fetch("http://localhost:3000/api/graphql", {
+    fetch(process.env.BASE_URI + "/api/graphql", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

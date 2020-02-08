@@ -1,7 +1,7 @@
 import { GraphQLClient } from "graphql-request";
 import fetch from "isomorphic-unfetch";
 
-let base_uri = "http://localhost:3000";
+let base_uri = process.env.BASE_URI;
 if (typeof window !== "undefined") {
   base_uri = window.origin;
 }

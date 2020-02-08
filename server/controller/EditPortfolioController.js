@@ -105,7 +105,7 @@ exports.EditPortfolioController = async function(req, res, next) {
       }
     }
     `;
-  const client = new GraphQLClient("http://localhost:3000/api/graphql", {
+  const client = new GraphQLClient(process.env.BASE_URI + "/api/graphql", {
     headers: {
       Authorization: jwt
     }
