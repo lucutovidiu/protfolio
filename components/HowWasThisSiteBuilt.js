@@ -11,7 +11,7 @@ const HowWasThisSiteBuilt = () => {
       <div className="container">
         <p className="lead text-left text-justify pt-2">
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I have started building this porfolio
-          website, so I excersise more on using some of my favorite technologies
+          website, in order to present my favorite technologies
           that are: NextJS with Node / Express for backend as well as mongoDB
           and Graphql, HTML/CSS, Bootstrap, React-bootstrap and React on
           frontend. Backend server powered by NextJS, and Node / Express as

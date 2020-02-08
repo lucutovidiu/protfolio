@@ -69,9 +69,12 @@ const Footer = () => {
               {FooterCard("CSS3", "fab fa-css3-alt")}
               {FooterCard("Sass", "fab fa-sass")}
               {FooterCard("BootStrap", "fab fa-bootstrap")}
+              {FooterCard("Angular", "fab fa-angular")}
               {FooterCard("React", "fab fa-react")}
+              {FooterCard("Java", "fab fa-java")}
               {FooterCard("Nodejs", "fab fa-node-js")}
               {FooterCardImg("Next.js", "../static/img/logos/next-js-logo.png")}
+              {FooterCard("Docker", "fab fa-docker")}
             </div>
           </div>
           <div className="col-md-4">
