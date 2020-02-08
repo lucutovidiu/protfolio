@@ -34,7 +34,7 @@ const PortfolioID = props => {
     `;
     fetchGraphQL(query)
       .then(data => {
-        console.log(data);
+        // console.log(data);
         setData({ ...data.GetPortfolio });
       })
       .catch(err => {

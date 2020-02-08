@@ -10,9 +10,12 @@ const Carosel = props => {
           <Carousel.Item key={key}>
             <img
               style={{
-                objectFit: "cover"
+                height:"100%",
+                maxHeight:"80vh",
+                display:"block",
+                margin:"auto"
+
               }}
-              className="d-block w-100"
               src={item.image_src}
               alt="First slide"
             />

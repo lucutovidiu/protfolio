@@ -27,7 +27,7 @@ function Portfolios(props) {
               <UpcomingProject key={upcomingPort.id} portfolio={upcomingPort} />
             ))}
           {dataPort !== null &&
-            dataPort.GetPortfolios.reverse().map((portfolio, id) => {
+            dataPort.GetPortfolios.slice().reverse().map((portfolio, id) => {
               return (
                 <Portfolio_landing_page_Card
                   auth={auth}
