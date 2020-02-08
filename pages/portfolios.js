@@ -10,6 +10,7 @@ import UpcomingProject from "../components/Portfolios/UpcomingProject";
 function Portfolios(props) {
   const auth = useAuth();
   const [dataPort, setData] = React.useState(props.dataPort);
+
   function ReRender(id) {
     setData({
       GetPortfolios: dataPort.GetPortfolios.filter(item => item.id !== id)
@@ -26,7 +27,7 @@ function Portfolios(props) {
               <UpcomingProject key={upcomingPort.id} portfolio={upcomingPort} />
             ))}
           {dataPort !== null &&
-            dataPort.GetPortfolios.map((portfolio, id) => {
+            dataPort.GetPortfolios.reverse().map((portfolio, id) => {
               return (
                 <Portfolio_landing_page_Card
                   auth={auth}
