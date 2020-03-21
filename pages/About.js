@@ -44,7 +44,8 @@ const About = () => {
                       &nbsp;&nbsp;
                       <a
                         target="_blank"
-                        href="../static/cv/CV.pdf"
+                        // href="../static/cv/CV.pdf"
+                        href="https://docs.google.com/document/d/1zihGiwBrrcbji4dR1krRtYlACKKJLlcBcM-Oy0mkEqQ/edit?usp=sharing"
                         className="btn-gradient"
                       >
                         Get My CV
