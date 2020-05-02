@@ -2,7 +2,8 @@ const mongoose = require("mongoose");
 // const private = require("../../private");
 const options = {
 	promiseLibrary: global.Promise,
-	useNewUrlParser: true
+	useNewUrlParser: true,
+	useUnifiedTopology: true
 };
 mongoose.set("useCreateIndex", true);
 const uri = process.env.mlabURI;
