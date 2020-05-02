@@ -114,14 +114,14 @@ function convertJSONToTable(json) {
 
 function souldVisitBeIgnored(geoLocation) {
 	let ignoreList =  ["Washington", "District of Columbia", "Ashburn", "Virginia","::1","::ffff"];
-	return ignoreList.find(visit => geoLocation.includes(visit)).length > 0;
+	return ignoreList.find(visit => geoLocation.includes(visit)).toString().length > 0;
 }
 
 
 exports.saveGeoLocationToDatabase = async function (req) {
 	let geoLoc = await getGeoLocation(getClientIPAddress(req));
 	let geoLocation = JSON.stringify(geoLoc);
-	console.log(souldVisitBeIgnored(geoLocation))
+	// console.log(souldVisitBeIgnored(geoLocation))
 	if (!souldVisitBeIgnored(geoLocation) && geoLocation.includes("country_name")) {
 		let message = {
 			geoLocation: geoLocation,
