@@ -35,7 +35,7 @@ class NavbarMeniu extends React.Component {
           </Link>
         </li>
         <li>
-          <Link href="/portfolios">
+          <Link href="/Portfolios">
             <a>
               <span style={this.btnRouteColor("Protfolios")}>Portfolios</span>
             </a>
@@ -43,7 +43,7 @@ class NavbarMeniu extends React.Component {
         </li>
         {this.props.isAuthenticaticated ? (
           <li>
-            <Link href="/portfolios/addNew">
+            <Link href="/Portfolios/addNew">
               <a style={this.btnRouteColor("Add New Portfolio")}>
                 Add New Portfolio
               </a>

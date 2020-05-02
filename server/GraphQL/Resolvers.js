@@ -3,7 +3,7 @@ const { GraphQLID } = require("graphql");
 var bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 // const private = require("../../private");
-let fs = require("fs-extra");
+let fs = require("fs");
 const path = require("path");
 
 var rootValue = {
@@ -47,7 +47,7 @@ var rootValue = {
         "../app/",
         data.rootDirectory.replace("../", "")
       );
-      fs.remove(staticPathToProjName);
+      fs.unlinkSync(staticPathToProjName);
       if (data.deletedCount) return true;
       else return false;
     } catch (err) {

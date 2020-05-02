@@ -7,6 +7,9 @@ import { Spinner } from "react-bootstrap";
 import { GetPortfoliosOnServer } from "../components/HelperFunctions";
 import { fetchGraphQL } from "../components/HelperFunctions";
 import UpcomingProject from "../components/Portfolios/UpcomingProject";
+
+let dataPort;
+
 function Portfolios(props) {
   const auth = useAuth();
   const [dataPort, setData] = React.useState(props.dataPort);
@@ -50,7 +53,8 @@ function Portfolios(props) {
 }
 
 Portfolios.getInitialProps = async ({ req }) => {
-  let dataPort = await GetPortfoliosOnServer();
+  console.log(dataPort)
+  dataPort = await GetPortfoliosOnServer();
   let upcomingPort = await fetchGraphQL(
     "{ GetUpcomingPortfolios { id title shortDescription technologiesUsed httpAccessLink projectStartDate repoLink } } "
   );

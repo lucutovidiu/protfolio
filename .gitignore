@@ -6,4 +6,5 @@ private.js
 next.config.js
 portfolios.txt
 users.txt
+.idea
 ./server/MongoDB/mongoServer.js
