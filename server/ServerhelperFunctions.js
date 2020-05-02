@@ -114,7 +114,8 @@ function convertJSONToTable(json) {
 
 function souldVisitBeIgnored(geoLocation) {
 	let ignoreList =  ["Washington", "District of Columbia", "Ashburn", "Virginia","::1","::ffff"];
-	return ignoreList.find(visit => geoLocation.includes(visit)).toString().length > 0;
+
+	return ignoreList.some(visit => geoLocation.includes(visit));
 }
 
 

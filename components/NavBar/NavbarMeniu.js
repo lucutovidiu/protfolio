@@ -43,7 +43,7 @@ class NavbarMeniu extends React.Component {
         </li>
         {this.props.isAuthenticaticated ? (
           <li>
-            <Link href="/Portfolios/addNew">
+            <Link href="/portfolios/addNew">
               <a style={this.btnRouteColor("Add New Portfolio")}>
                 Add New Portfolio
               </a>
