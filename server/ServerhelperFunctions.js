@@ -113,9 +113,7 @@ function convertJSONToTable(json) {
 }
 
 function souldVisitBeIgnored(geoLocation) {
-	let ignoreList =  ["Washington", "District of Columbia", "Ashburn", "Virginia","::1","::ffff"];
-
-	return ignoreList.some(visit => geoLocation.includes(visit));
+	return process.env.IGNORE_LOCATIONS.split(",").some(visit => geoLocation.includes(visit));
 }
 
 
@@ -141,7 +139,7 @@ exports.saveGeoLocationToDatabase = async function (req) {
 		} catch (err) {
 			console.log(err);
 		}
-	}else{
+	} else {
 		console.log("Ignored location:");
 		console.log(geoLocation)
 	}

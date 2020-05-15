@@ -1,11 +1,11 @@
-const withSass = require("@zeit/next-sass");
-const withCSS = require("@zeit/next-css");
+// const withSass = require("@zeit/next-sass");
+// const withCSS = require("@zeit/next-css");
 const withFonts = require("next-fonts");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const withImages = require("next-images");
 const webpack = require("webpack");
 
-module.exports = withSass(withCSS(withFonts(withImages({
+module.exports = withFonts(withImages({
 	webpack(config, options) {
 		config.module.rules.push({
 			test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
@@ -19,7 +19,7 @@ module.exports = withSass(withCSS(withFonts(withImages({
 		config.optimization.minimizer.push(new OptimizeCSSAssetsPlugin({}));
 		return config;
 	}
-}))));
+}));
 
 //
 // module.exports = withPlugins([withImages, withSass, withCSS, withFonts], {
