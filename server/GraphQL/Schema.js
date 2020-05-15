@@ -1,4 +1,4 @@
-var { buildSchema } = require("graphql");
+var {buildSchema} = require("graphql");
 
 var schema = buildSchema(`
   scalar Date
@@ -97,5 +97,5 @@ var schema = buildSchema(`
   }
 `);
 module.exports = {
-  schema
+	schema
 };

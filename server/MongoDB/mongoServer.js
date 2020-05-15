@@ -8,8 +8,8 @@ const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
 const path = require("path");
-const { Portfolio, User } = require("./Models");
-const { GraphQLAuthRoute } = require("../GraphQL/auth/authMiddlewere");
+const {Portfolio, User} = require("./Models");
+const {GraphQLAuthRoute} = require("../GraphQL/auth/authMiddlewere");
 const allowedGuestGraphQuery = ["Portfolio", "Portfolios"];
 
 // const mongooseLocal = require("mongoose");
@@ -86,34 +86,34 @@ const allowedGuestGraphQuery = ["Portfolio", "Portfolios"];
 const app = express();
 const mongoose = require("../MongoDB/MongooseConnection");
 mongoose.connect().then(() => {
-  app.use(bodyParser.urlencoded({ extended: false }));
-  app.use(bodyParser.json());
-  app.use(
-    "/graphql",
-    graphqlHTTP({
-      ...schema,
-      ...rootValue,
-      graphiql: true
-    })
-  );
-  //   const jwtToken = jwt.sign({ user: "Guest" }, "mysupersecret", {
-  //     expiresIn: "1h"
-  //   });
-  // console.log("jwt: ", jwtToken);
-  // console.log(
-  //   path.join(
-  //     path.resolve("ovi_port_website"),
-  //     "static",
-  //     "img",
-  //     "portofios_img",
-  //     "comenzi_magazine",
-  //     "comenzi_magazine_thumb.JPG"
-  //   )
-  // );
+	app.use(bodyParser.urlencoded({extended: false}));
+	app.use(bodyParser.json());
+	app.use(
+		"/graphql",
+		graphqlHTTP({
+			...schema,
+			...rootValue,
+			graphiql: true
+		})
+	);
+	//   const jwtToken = jwt.sign({ user: "Guest" }, "mysupersecret", {
+	//     expiresIn: "1h"
+	//   });
+	// console.log("jwt: ", jwtToken);
+	// console.log(
+	//   path.join(
+	//     path.resolve("ovi_port_website"),
+	//     "static",
+	//     "img",
+	//     "portofios_img",
+	//     "comenzi_magazine",
+	//     "comenzi_magazine_thumb.JPG"
+	//   )
+	// );
 
-  app.listen(3001, () => {
-    console.log("listening grap");
-  });
+	app.listen(3001, () => {
+		console.log("listening grap");
+	});
 });
 
 // let port1 = new Portfolio({

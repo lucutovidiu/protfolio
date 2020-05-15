@@ -1,5 +1,4 @@
 import React from "react";
-import "../static/styles/_portfolios.scss";
 import BaseLayout from "../components/BaseLayout";
 import Portfolio_landing_page_Card from "../components/Portfolios/Portfolio_landing_page_Card";
 import useAuth from "../components/Auth/useAuth";

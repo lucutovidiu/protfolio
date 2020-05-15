@@ -1,4 +1,4 @@
-version: '3'
+version: '3.4'
 
 services:
   portfolio:
@@ -6,6 +6,16 @@ services:
     build: 
       context: .
       dockerfile: .dockerfile
+    user: "1000"
+    environment: 
+      - mlabURI=${mlabURI}
+      - JWTSecret=${JWTSecret}
+      - EmailToUserName=${EmailToUserName}
+      - EmailUserName=${EmailUserName}
+      - EmailPassword=${EmailPassword}
+      - EmailFromUserName=${EmailFromUserName}
+      - BASE_URI=${BASE_URI}
+      - IGNORE_LOCATIONS=${IGNORE_LOCATIONS}
     volumes:
       - .:/app
       - node_modules:/app/node_modules
